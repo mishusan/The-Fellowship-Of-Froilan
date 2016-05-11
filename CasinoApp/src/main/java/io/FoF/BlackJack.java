@@ -8,10 +8,12 @@ public class Blackjack extends CardGame{
 
     public void startGame() {
 
-        //Gey Player name form dispaly Vvvvvv
+        //Gey Player name form display Vvvvvv
         BlackjackPlayer player = new BlackjackPlayer("Player");
         BlackjackPlayer dealer = new BlackjackPlayer("Dealer");
 
+        Display.showMessage("How much would you like to bet on this hand? ");
+        player.amountPlayerBet = Display.getDoublePrompt();
 
 
         player.addCardToHand(deck.dealNextCard());
@@ -82,12 +84,14 @@ public class Blackjack extends CardGame{
             if (dealer.getHandTotalValue() > player.getHandTotalValue()) {
                 Display.showMessage("Dealer Wins");
                 dealer.printHand(true);
+                Player.removeMoney(player.amountPlayerBet);/////////
                 gameOn = false;
 
             }
             if (dealer.getHandTotalValue() < player.getHandTotalValue()) {
                 Display.showMessage("YOU WIN!!");
                 dealer.printHand(true);
+                Player.addMoney(player.amountPlayerBet);////////
                 gameOn = false;
 
             }
