@@ -76,7 +76,7 @@ public class Blackjack extends CardGame{
                     dealersTurn = false;
                 }
                 if (dealer.getHandTotalValue() > 16 && dealer.getHandTotalValue() < 21) {
-                    Display.showMessage("Dealer has above 17");
+                    Display.showMessage("Dealer has above 16");
                     dealersTurn = false;
                 }
             }
@@ -84,14 +84,14 @@ public class Blackjack extends CardGame{
             if (dealer.getHandTotalValue() > player.getHandTotalValue()) {
                 Display.showMessage("Dealer Wins");
                 dealer.printHand(true);
-                Player.removeMoney(player.amountPlayerBet);/////////
+                Player.removeMoneyFromPurse(player.amountPlayerBet);/////////
                 gameOn = false;
 
             }
             if (dealer.getHandTotalValue() < player.getHandTotalValue()) {
                 Display.showMessage("YOU WIN!!");
                 dealer.printHand(true);
-                Player.addMoney(player.amountPlayerBet);////////
+                Player.addMoneyToPurse(player.amountPlayerBet + player.amountPlayerBet);////////
                 gameOn = false;
 
             }
