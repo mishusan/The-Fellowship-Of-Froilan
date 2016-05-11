@@ -52,7 +52,31 @@ public class BlackjackTest {
         assertEquals("The expected card is Two of Hearts", expectedValue, actualValue);
     }
 
+    @Test
+    public void addCardToHandTest(){
+        blackjackPlayer.addCardToHand(deck.dealNextCard());
+        String expectedValue = "Two of Hearts\n";
+        String actualValue = blackjackPlayer.printHand(true);
+        assertEquals("The card should be Two of Hearts", expectedValue, actualValue);
+    }
 
+    @Test
+    public void getHandTotalValueTest(){
+        blackjackPlayer.addCardToHand(deck.dealNextCard());
+        blackjackPlayer.addCardToHand(deck.dealNextCard());
+        int expectedValue = 5;
+        int actualValue = blackjackPlayer.getHandTotalValue();
+        assertEquals("The hand's total value should be 5", expectedValue, actualValue);
+    }
 
+    @Test
+    public void changeValueOfAceIfHandIsOver21Test(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 14));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 8));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 14));
+        int expectedValue = 20;
+        int actualValue = blackjackPlayer.getHandTotalValue();
+        assertEquals("The hand total should be 20", expectedValue, actualValue);
+    }
 
 }

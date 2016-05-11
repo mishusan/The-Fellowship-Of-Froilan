@@ -12,12 +12,15 @@ public class Blackjack extends CardGame{
         BlackjackPlayer player = new BlackjackPlayer("Player");
         BlackjackPlayer dealer = new BlackjackPlayer("Dealer");
 
+
+
         player.addCardToHand(deck.dealNextCard());
         dealer.addCardToHand(deck.dealNextCard());
         player.addCardToHand(deck.dealNextCard());
         dealer.addCardToHand(deck.dealNextCard());
 
-        cardsAreDealtMessage();
+        Display.showMessage("Cards are dealt");
+        //Display print Hand
         player.printHand(true);
         dealer.printHand(false);
 
@@ -36,13 +39,14 @@ public class Blackjack extends CardGame{
                 switch (playerHitOrStay) {
                     case 'h':
                         player.addCardToHand(deck.dealNextCard());
-                        yourNewHandAfterHitMessage();
+                        Display.showMessage("Your new hand: ");
+                        //Display print Hand
                         player.printHand(true);
-                        if (player.getHandSum() == 21) {
+                        if (player.getHandTotalValue() == 21) {
                             playersTurn = false;
                         }
-                        if (player.getHandSum() > 21) {
-                            bustMessage();
+                        if (player.getHandTotalValue() > 21) {
+                            Display.showMessage("BUST");
                             System.out.println(dealer.getName() + " has WON!, you bust");
                             dealersTurn = false;
                             playersTurn = false;
@@ -54,75 +58,43 @@ public class Blackjack extends CardGame{
                         playersTurn = false;
                         break;
                     default:
-                        errorPlayerDidNotEnterHitOrStayMessage();
+                        Display.showMessage("Error - You did not enter an H or an S: Please Enter an H for Hit or S for Stay");
                         break;
                 }
             }
 
             if (dealersTurn) {
-                if (dealer.getHandSum() < 17) {
+                if (dealer.getHandTotalValue() < 17) {
                     dealer.addCardToHand(deck.dealNextCard());
                 }
-                if (dealer.getHandSum() > 21) {
+                if (dealer.getHandTotalValue() > 21) {
                     System.out.println("BUST");
                     System.out.println(player.getName() + " have WON!, dealer busts");
                     gameOn = false;
                     dealersTurn = false;
                 }
-                if (dealer.getHandSum() > 16 && dealer.getHandSum() < 21) {
-                    dealerHasAbove17Message();
+                if (dealer.getHandTotalValue() > 16 && dealer.getHandTotalValue() < 21) {
+                    Display.showMessage("Dealer has above 17");
                     dealersTurn = false;
                 }
             }
-
-            if (dealer.getHandSum() > player.getHandSum()) {
-                dealerWinsMessage();
+//ADD IN ADD MONEY TO PLAYER PURSE IF WON AND TAKE AMOUNT BET OUT OF PLAYER PURSE IF LOSES
+            if (dealer.getHandTotalValue() > player.getHandTotalValue()) {
+                Display.showMessage("Dealer Wins");
                 dealer.printHand(true);
                 gameOn = false;
 
             }
-            if (dealer.getHandSum() < player.getHandSum()) {
-                playerWinsMessage();
+            if (dealer.getHandTotalValue() < player.getHandTotalValue()) {
+                Display.showMessage("YOU WIN!!");
                 dealer.printHand(true);
                 gameOn = false;
 
             }
-            if (dealer.getHandSum() == player.getHandSum()) {
-                itIsAPushMessage();
+            if (dealer.getHandTotalValue() == player.getHandTotalValue()) {
+                Display.showMessage("Tie...It is a push");
                 gameOn = false;
             }
         }
-    }
-
-    public String cardsAreDealtMessage(){
-        return "Cards are dealt";
-    }
-
-    public String dealerHasAbove17Message(){
-        return "Dealer has above 17";
-    }
-
-    public String dealerWinsMessage(){
-        return "Dealer Wins";
-    }
-
-    public String playerWinsMessage(){
-        return "YOU WIN!!";
-    }
-
-    public String itIsAPushMessage(){
-        return "Tie...It is a push";
-    }
-
-    public String errorPlayerDidNotEnterHitOrStayMessage(){
-        return "Error - You did not enter an H or an S: Please Enter an H for Hit or S for Stay";
-    }
-
-    public String bustMessage(){
-        return "BUST";
-    }
-
-    public String yourNewHandAfterHitMessage(){
-        return "Your new hand: ";
     }
 }

@@ -8,10 +8,11 @@ import static javax.swing.UIManager.put;
 public class BlackjackPlayer {
 
     private String name;
+    double amountPlayerBet;
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int numberOfCardsInHand = 0;
 
-    public BlackjackPlayer(String name){
+    public BlackjackPlayer(String name) {
         this.name = name;
     }
 
@@ -19,45 +20,46 @@ public class BlackjackPlayer {
         return name;
     }
 
-    public void addCardToHand(Card newCard){
+    public void addCardToHand(Card newCard) {
         hand.add(newCard);
         this.numberOfCardsInHand++;
     }
 
-    public void printHand(boolean showCard){
-
+    public String printHand(boolean showCard) {
+        String cardInHand = "";
+        //Display show message below
         System.out.printf("%s's cards:\n", this.name);
-        for(int i = 0; i < numberOfCardsInHand; i++) {
-            if(i ==0 && !showCard){
-                System.out.println("[Hidden]");
-            }else {
-                System.out.println(Deck.faceValueToString(this.hand.get(i).getCardRank()) + " of " + this.hand.get(i).getCardSuit()+ "\n");
+        for (int i = 0; i < numberOfCardsInHand; i++) {
+            if (i == 0 && !showCard) {
+                cardInHand += "[Hidden]\n";
+            } else {
+                cardInHand += Deck.faceValueToString(this.hand.get(i).getCardRank()) + " of " + this.hand.get(i).getCardSuit() + "\n";
             }
         }
+        return cardInHand;
     }
 
 
-    public int getHandSum(){
-        int handSum = 0;
-        int numOfAces = 0;
-        for(int i = 0; i < this.hand.size(); i++){
+    public int getHandTotalValue() {
+        int handTotal = 0;
+        int numberOfAces = 0;
+        for (int i = 0; i < this.hand.size(); i++) {
             int rank = this.hand.get(i).getCardRank();
-            if(rank == 14){
-                numOfAces++;
-                handSum+= 11;
+            if (rank == 14) {
+                numberOfAces++;
+                handTotal += 11;
             }
-            if(rank >10 && rank < 14) {
-                handSum += 10;
-            }if(rank < 10){
-                handSum += rank;
+            if (rank > 10 && rank < 14) {
+                handTotal += 10;
             }
-
-            if(handSum > 21 && numOfAces >0){
-                handSum -= 10;
-                numOfAces--;
+            if (rank < 10) {
+                handTotal += rank;
+            }
+            if (handTotal > 21 && numberOfAces > 0) {
+                handTotal -= 10;
+                numberOfAces--;
             }
         }
-
-        return handSum;
+        return handTotal;
     }
 }

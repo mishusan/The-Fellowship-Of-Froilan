@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 public class Deck {
 
-    public static final int NUM_OF_CARDS = 52;
     private ArrayList<Card> deckOfCards = new ArrayList<Card>();
 
     public Deck() {
