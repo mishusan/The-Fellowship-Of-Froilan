@@ -4,7 +4,7 @@ overs JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, And
 CasinoApp/*.iml
 .DS_Store
 CasinoApp/target/*
-
+CardsDieSlots/*
 
 # User-specific stuff:
 CasinoApp/.idea/*
