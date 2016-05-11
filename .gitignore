@@ -1,0 +1,48 @@
+overs JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+
+.DS_Store
+
+# User-specific stuff:
+CasinoApp/.idea/*
+CasinoApp/.idea/workspace.xml
+CasinoApp/.idea/tasks.xml
+CasinoApp/.idea/dictionaries
+CasinoApp/.idea/vcs.xml
+CasinoApp/.idea/jsLibraryMappings.xml
+
+# Sensitive or high-churn files:
+CasinoApp/.idea/dataSources.ids
+CasinoApp/.idea/dataSources.xml
+CasinoApp/.idea/dataSources.local.xml
+CasinoApp/.idea/sqlDataSources.xml
+CasinoApp/.idea/dynamic.xml
+CasinoApp/.idea/uiDesigner.xml
+
+# Gradle:
+CasinoApp/.idea/gradle.xml
+CasinoApp/.idea/libraries
+
+# Mongo Explorer plugin:
+CasinoApp/.idea/mongoSettings.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
