@@ -1,9 +1,7 @@
 package io.FoF;
 
-<<<<<<< HEAD
 
 public class SicBo {
-=======
 import java.util.HashMap;
 
 /**

@@ -1,15 +1,12 @@
 package io.FoF;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by matthewb on 5/11/16.
  */
-=======
 
->>>>>>> afcbf4ab3fbb4459a797285fa121affcb6e7295e
 public class Slots {
 
 
