@@ -1,20 +1,8 @@
 package io.FoF;
-
-<<<<<<< HEAD
-
-public class Display {
-
-    public static void main(String[] args) {
-        Deck decker = new Deck();
-
-        System.out.println(decker.dealNextCard().toString());
-    }
-=======
 import org.omg.CORBA.Object;
 import java.util.Scanner;
-/**
- * Created by matthewb on 5/11/16.
- */
+
+
 public class Display {
     /*Used to display common variables*/
 
@@ -116,6 +104,4 @@ public class Display {
         return userInput;
     }
 
-
->>>>>>> Display
 }
