@@ -1,20 +1,21 @@
 package io.FoF;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Blackjack extends CardGame{
 
     public void startGame() {
-        Deck decker = new Deck();
+
         //Gey Player name form dispaly Vvvvvv
         BlackjackPlayer player = new BlackjackPlayer("Player");
         BlackjackPlayer dealer = new BlackjackPlayer("Dealer");
 
-        player.addCardToHand(decker.dealCard());
-        dealer.addCardToHand(decker.dealCard());
-        player.addCardToHand(decker.dealCard());
-        dealer.addCardToHand(decker.dealCard());
+        player.addCardToHand(deck.dealNextCard());
+        dealer.addCardToHand(deck.dealNextCard());
+        player.addCardToHand(deck.dealNextCard());
+        dealer.addCardToHand(deck.dealNextCard());
 
         cardsAreDealtMessage();
         player.printHand(true);
@@ -34,7 +35,7 @@ public class Blackjack extends CardGame{
 
                 switch (playerHitOrStay) {
                     case 'h':
-                        player.addCardToHand(decker.dealCard());
+                        player.addCardToHand(deck.dealNextCard());
                         yourNewHandAfterHitMessage();
                         player.printHand(true);
                         if (player.getHandSum() == 21) {
@@ -60,7 +61,7 @@ public class Blackjack extends CardGame{
 
             if (dealersTurn) {
                 if (dealer.getHandSum() < 17) {
-                    dealer.addCardToHand(decker.dealCard());
+                    dealer.addCardToHand(deck.dealNextCard());
                 }
                 if (dealer.getHandSum() > 21) {
                     System.out.println("BUST");
