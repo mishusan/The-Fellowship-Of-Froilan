@@ -19,7 +19,7 @@ public class Casino {
         if (checkAge(player)){
             while(stillInCasino) {
                 gameSelectionOption();
-                game = display.getIntPrompt();
+                game = display.getIntPrompt("What do you choose?");
                 gameSelection(game);
             }
         }else{
@@ -47,7 +47,7 @@ public class Casino {
 
     public void gameSelection(int game){
         switch (game){
-            case 1: BlackJack blackJack = new BlackJack();
+            case 1: Blackjack blackJack = new Blackjack();
                 blackJack.startGame(player);
                 break;
             case 2: SicBo sicBo = new SicBo();

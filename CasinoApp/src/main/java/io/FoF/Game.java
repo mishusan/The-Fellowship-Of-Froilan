@@ -3,40 +3,43 @@ package io.FoF;
 /**
  * Created by minlee on 5/11/16.
  */
-public abstract class Game {
+public class Game {
 
     protected double pot;
     protected Display display = new Display();
     protected boolean gameOver = false;
 
-    abstract void startGame(Player player);
+    void startGame(Player player){};
 
-    abstract void placeBet();
+    void placeBet(){};
 
-    public boolean checkAmountInPurse(double betAmount){
+    public Boolean checkAmountInPurse(Player player,double betAmount){
         boolean checkEnoughMoney = false;
-        if(betAmount <= currentPlayer.getPurse()){
+        if(betAmount <= player.getPurse()){
             checkEnoughMoney = true;
         }
         return checkEnoughMoney;
     }
 
-    abstract void shuffle();
+    void shuffle(){};
 
-    abstract int sendDisplayResults();
+    int sendDisplayResults(){return 0;};
 
-    abstract void checkToSeeIfPlayerWon();
+    void checkToSeeIfPlayerWon(){};
 
-    public void removeMoneyFromPurse(double pot){
-        currentPlayer.removeMoneyFromPurse(pot);
-        System.out.println("Removed "+pot+" from current player's purse");
+    public void MoneyFromPurse(Player player, double pot){
+        player.removeMoneyFromPurse(pot);
+        display.showMessage("Removed "+pot+" from current player's purse");
+        //System.out.println("Removed "+pot+" from current player's purse");
     }
 
-    public void addMoneyToPurse(){
-        currentPlayer.addMoneyToPurse(double pot);
-        System.out.println("Added "+pot+" to current player's purse");
+    public void MoneyToPurse(Player player,double pot){
+        player.addMoneyToPurse(pot);
+        display.showMessage("Added "+pot+" from current player's purse");
+
+        //System.out.println("Added "+pot+" to current player's purse");
     }
 
-    abstract void stopGame();
+    void stopGame(){};
 
 }

@@ -7,18 +7,18 @@ import java.util.Random;
  * Created by matthewb on 5/11/16.
  */
 
-public class Slots {
+public class Slots extends Game{
 
 
-    private Boolean stopPlayingSlots;
-    private ArrayList<Tumbler> allTumblers;
-    private Double pot;
-    private Double winnings;
-    private Boolean betPlaced;
-    private int numOfPaylines;
-    private Tumbler tum1;
-    private Tumbler tum2;
-    private Tumbler tum3;
+    Boolean stopPlayingSlots;
+    ArrayList<Tumbler> allTumblers;
+    Double pot;
+    Double winnings;
+    Boolean betPlaced;
+    int numOfPaylines;
+    Tumbler tum1;
+    Tumbler tum2;
+    Tumbler tum3;
 
     public Slots(){
 

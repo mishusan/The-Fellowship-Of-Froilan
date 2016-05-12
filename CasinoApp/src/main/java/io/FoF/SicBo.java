@@ -1,8 +1,7 @@
 package io.FoF;
-
-
-public class SicBo {
 import java.util.HashMap;
+
+
 
 /**
  * Created by matthewb on 5/11/16.
@@ -29,13 +28,13 @@ public class SicBo extends Game{
 
 
         while(betTypeChoice!=0){
-            display.sendMessage("How would you like to bet?\n0: No Bets\n1: Singles\n2: Doubles\n3: Triples\n4: Sums\n5: Specific 2 Dice\n6: Bet Small\n7: Bet Big");
-            betTypeChoice = display.getIntPrompt();
+            //display.showMessage();
+            betTypeChoice = display.getIntPrompt("How would you like to bet?\n0: No Bets\n1: Singles\n2: Doubles\n3: Triples\n4: Sums\n5: Specific 2 Dice\n6: Bet Small\n7: Bet Big");
             switch (betTypeChoice){
                 case 1:
                     betSpecificChoice = display.getIntPrompt("Which single would you like to bet on? (1 - 6): ");
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         switch (betSpecificChoice){
                             case 1:
@@ -59,14 +58,14 @@ public class SicBo extends Game{
                         }
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
 
                     break;
                 case 2:
                     betSpecificChoice = display.getIntPrompt("Which double would you like to bet on? (1 - 6): ");
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         switch (betSpecificChoice){
                             case 1:
@@ -90,13 +89,13 @@ public class SicBo extends Game{
                         }
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
                     break;
                 case 3:
                     betSpecificChoice = display.getIntPrompt("Which triple would you like to bet on? (1 - 6) or 0 for any triple: ");
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         switch (betSpecificChoice){
                             case 0:
@@ -123,13 +122,13 @@ public class SicBo extends Game{
                         }
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
                     break;
                 case 4:
                     betSpecificChoice = display.getIntPrompt("Which Sum would you like to bet on? (4 - 17): ");
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         switch (betSpecificChoice){
                             case 4:
@@ -177,7 +176,7 @@ public class SicBo extends Game{
                         }
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
                     break;
                 case 5:
@@ -197,7 +196,7 @@ public class SicBo extends Game{
                             "14: 4 & 6\n" +
                             "15: 5 & 6");
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         switch (betSpecificChoice){
                             case 1:
@@ -248,33 +247,33 @@ public class SicBo extends Game{
                         }
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
                     break;
                 case 6:
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         allBets[48] += currentBetAmount;
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
                     break;
                 case 7:
                     currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(currentBetAmount+totalBetPerRound)){
+                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
                         totalBetPerRound+=currentBetAmount;
                         allBets[49] += currentBetAmount;
                     }
                     else {
-                        display.sendMessage("You do not have enough money, bet again");
+                        display.showMessage("You do not have enough money, bet again");
                     }
                     break;
             }
         }
 
-        removeMoneyFromPurse(totalBetPerRound);
+        player.removeMoneyFromPurse(totalBetPerRound);
 
 
     }
@@ -430,5 +429,4 @@ public class SicBo extends Game{
 
     public void stopGame(){
     }
->>>>>>> SicBo
 }

@@ -14,7 +14,7 @@ public class SicBoBet {
         this.betAmount = betAmount;
     }
 
-    public booelan
+   // public boolean
 
 
 

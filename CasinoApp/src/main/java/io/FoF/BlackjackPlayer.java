@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by michaelcarroll on 5/11/16.
  */
-public class BlackjackPlayer {
+public class BlackjackPlayer extends Player {
 
     private String name;
     double amountPlayerBet;

@@ -1,26 +1,31 @@
 package io.FoF;
 
 
+import java.util.Scanner;
+
 public class Blackjack extends CardGame {
 
-    public void startGame() {
+    //Player player = new Player();
+    Display display = new Display();
+
+    public void startGame(Player player) {
 
         //Gey Player name form display Vvvvvv
-        BlackjackPlayer player = new BlackjackPlayer("Player");
+        BlackjackPlayer blackjackPlayer = new BlackjackPlayer("Player");
         BlackjackPlayer dealer = new BlackjackPlayer("Dealer");
 
-        Display.showMessage("How much would you like to bet on this hand? ");
-        player.amountPlayerBet = Display.getDoublePrompt();
+        display.showMessage("How much would you like to bet on this hand? ");
+        blackjackPlayer.amountPlayerBet = display.getDoublePrompt("wut");
 
 
-        player.addCardToHand(deck.dealNextCard());
+        blackjackPlayer.addCardToHand(deck.dealNextCard());
         dealer.addCardToHand(deck.dealNextCard());
-        player.addCardToHand(deck.dealNextCard());
+        blackjackPlayer.addCardToHand(deck.dealNextCard());
         dealer.addCardToHand(deck.dealNextCard());
 
-        Display.showMessage("Cards are dealt");
+        display.showMessage("Cards are dealt");
         //Display print Hand
-        player.printHand(true);
+        blackjackPlayer.printHand(true);
         dealer.printHand(false);
 
         boolean playersTurn = true;
@@ -32,19 +37,19 @@ public class Blackjack extends CardGame {
             Scanner in = new Scanner(System.in);
             if (playersTurn) {
                 //Display.showMessage
-                System.out.println(player.getName() + " Hit or Stay: Enter H or S");
+                System.out.println(blackjackPlayer.getName() + " Hit or Stay: Enter H or S");
                 char playerHitOrStay = in.next().toLowerCase().charAt(0);
 
                 switch (playerHitOrStay) {
                     case 'h':
-                        player.addCardToHand(deck.dealNextCard());
+                        blackjackPlayer.addCardToHand(deck.dealNextCard());
                         Display.showMessage("Your new hand: ");
                         //Display print Hand
-                        player.printHand(true);
-                        if (player.getHandTotalValue() == 21) {
+                        blackjackPlayer.printHand(true);
+                        if (blackjackPlayer.getHandTotalValue() == 21) {
                             playersTurn = false;
                         }
-                        if (player.getHandTotalValue() > 21) {
+                        if (blackjackPlayer.getHandTotalValue() > 21) {
                             Display.showMessage("BUST");
                             System.out.println(dealer.getName() + " has WON!, you bust");
                             dealersTurn = false;
@@ -53,7 +58,7 @@ public class Blackjack extends CardGame {
                         }
                         break;
                     case 's':
-                        System.out.println(player.getName() + " stays.");
+                        System.out.println(blackjackPlayer.getName() + " stays.");
                         playersTurn = false;
                         break;
                     default:
@@ -68,7 +73,7 @@ public class Blackjack extends CardGame {
                 }
                 if (dealer.getHandTotalValue() > 21) {
                     System.out.println("BUST");
-                    System.out.println(player.getName() + " have WON!, dealer busts");
+                    System.out.println(blackjackPlayer.getName() + " have WON!, dealer busts");
                     gameOn = false;
                     dealersTurn = false;
                 }
@@ -78,21 +83,21 @@ public class Blackjack extends CardGame {
                 }
             }
 //ADD IN ADD MONEY TO PLAYER PURSE IF WON AND TAKE AMOUNT BET OUT OF PLAYER PURSE IF LOSES
-            if (dealer.getHandTotalValue() > player.getHandTotalValue()) {
+            if (dealer.getHandTotalValue() > blackjackPlayer.getHandTotalValue()) {
                 Display.showMessage("Dealer Wins");
                 dealer.printHand(true);
-                Player.removeMoneyFromPurse(player.amountPlayerBet);/////////
+                blackjackPlayer.removeMoneyFromPurse(blackjackPlayer.amountPlayerBet);/////////
                 gameOn = false;
 
             }
-            if (dealer.getHandTotalValue() < player.getHandTotalValue()) {
+            if (dealer.getHandTotalValue() < blackjackPlayer.getHandTotalValue()) {
                 Display.showMessage("YOU WIN!!");
                 dealer.printHand(true);
-                Player.addMoneyToPurse(player.amountPlayerBet + player.amountPlayerBet);////////
+                player.addMoneyToPurse(blackjackPlayer.amountPlayerBet + blackjackPlayer.amountPlayerBet);////////
                 gameOn = false;
 
             }
-            if (dealer.getHandTotalValue() == player.getHandTotalValue()) {
+            if (dealer.getHandTotalValue() == blackjackPlayer.getHandTotalValue()) {
                 Display.showMessage("Tie...It is a push");
                 gameOn = false;
             }

@@ -25,18 +25,20 @@ public class Display {
     }
 
     /*Used to display the objects e.g Card ascii art or image(GUI)*/
-
-    static void showCard(Object card){
+    /*
+    static void showCard(Card card){
         System.out.println(card.image);
     }
 
-    static void showDie(Object die){
+    static void showDie(Dice die){
         System.out.println(die.face);
     }
+
 
     static void showTable(Object table){
         System.out.println(table.top);
     }
+
 
     static void showSlot(Object slot){
         System.out.println(slot.front);

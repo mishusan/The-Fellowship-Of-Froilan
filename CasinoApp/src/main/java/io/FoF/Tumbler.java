@@ -5,11 +5,11 @@ package io.FoF;
  */
 public class Tumbler {
 
-    private int tumbler1;
-    private int tumbler2;
-    private int tumbler3;
-    private int tumbler4;
-    private int tumbler5;
+    int tumbler1;
+    int tumbler2;
+    int tumbler3;
+    int tumbler4;
+    int tumbler5;
 
     public Tumbler(){
         tumbler1 =0;
