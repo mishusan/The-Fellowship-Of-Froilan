@@ -83,8 +83,9 @@ public class Casino {
     }
     public void gameSelection(int game){
         switch (game){
-            case 1: Blackjack blackJack = new Blackjack(currentPlayer);
-               blackJack.startGame();
+            case 1: Blackjack blackJack = new Blackjack();
+                //BlackjackPlayer blackjackPlayer = new BlackjackPlayer("hi");
+               blackJack.startGame(currentPlayer);
                break;
             case 2: SicBo sicBo = new SicBo();
                 sicBo.startGame(currentPlayer);
