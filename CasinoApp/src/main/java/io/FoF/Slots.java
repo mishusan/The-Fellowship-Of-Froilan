@@ -10,15 +10,15 @@ import java.util.Random;
 public class Slots extends Game{
 
 
-    Boolean stopPlayingSlots;
+    private Boolean stopPlayingSlots;
     ArrayList<Tumbler> allTumblers;
-    Double pot;
-    Double winnings;
-    Boolean betPlaced;
-    int numOfPaylines;
-    Tumbler tum1;
-    Tumbler tum2;
-    Tumbler tum3;
+    private Double pot;
+    private Double winnings;
+    private Boolean betPlaced;
+    private int numOfPaylines;
+    private Tumbler tum1;
+    private Tumbler tum2;
+    private Tumbler tum3;
 
     public Slots(){
 
@@ -34,6 +34,55 @@ public class Slots extends Game{
 
     }
 
+    public Boolean getStopPlayingSlots() {
+        return stopPlayingSlots;
+    }
+
+    public ArrayList<Tumbler> getAllTumblers() {
+        return allTumblers;
+    }
+
+    public Double getPot() {
+        return pot;
+    }
+
+    public Double getWinnings() {
+        return winnings;
+    }
+
+    public Boolean getBetPlaced() {
+        return betPlaced;
+    }
+
+    public int getNumOfPaylines() {
+        return numOfPaylines;
+    }
+
+    public void setStopPlayingSlots(Boolean stopPlayingSlots) {
+        this.stopPlayingSlots = stopPlayingSlots;
+    }
+
+    public void setAllTumblers(ArrayList<Tumbler> allTumblers) {
+        this.allTumblers = allTumblers;
+    }
+
+    public void setPot(Double pot) {
+        this.pot = pot;
+    }
+
+    public void setWinnings(Double winnings) {
+        this.winnings = winnings;
+    }
+
+    public void setBetPlaced(Boolean betPlaced) {
+        this.betPlaced = betPlaced;
+    }
+
+    public void setNumOfPaylines(int numOfPaylines) {
+        this.numOfPaylines = numOfPaylines;
+    }
+
+
 
 
 
@@ -42,14 +91,19 @@ public class Slots extends Game{
         allTumblers.add(tum2);
         allTumblers.add(tum3);
         while(!stopPlayingSlots){
+            Display.showMessage(player.getPurse());
             betPlaced = false;
             while(!betPlaced){
-                //double currentBet = Display.getDoublePrompt();
-                double currentBet = 10.0;
+                double currentBet = Display.getDoublePrompt("How much you betting?");
                 if(checkAmountInPurse(player,currentBet)){
                     placeBet(player,currentBet);
                     removeMoneyFromPurse(player,currentBet);
                     betPlaced = true;
+                }
+                else{
+                    Display.showMessage("You're broke Nurudeen is escorting you to the ATM");
+                    stopPlayingSlots = true;
+                    break;
                 }
 
                 shuffle();
@@ -57,8 +111,7 @@ public class Slots extends Game{
                 checkToSeeIfPlayerWon();
                 checkNumOfPaylines();
                 addMoneytoPurse(player,winnings);
-                //String choice = display.getStringPrompt();
-                String choice = "no";
+                String choice = Display.getStringPrompt("Are you done playing?");
                 stopPlayingSlots = stopGame(choice);
             }
         }
@@ -78,18 +131,12 @@ public class Slots extends Game{
     }
 
     public void removeMoneyFromPurse(Player player,double bet){
-        //player.removeMoney(bet);
-
+        player.removeMoneyFromPurse(bet);
     }
 
     public Boolean checkAmountInPurse(Player player, double bet){
-
-        //if(bet > player.getPurse(player)){
-        if(bet > 25.0){
-            //Display.displayNotEnoughMoney();
-            System.out.println("Not enough Moolah");
-            //Display.displayPurse(player);
-            System.out.println("$$");
+        if(bet > player.getPurse()){
+            Display.showMessage("Not enought Moolah $$" + player.getPurse());
             return false;
         }
         else{
@@ -98,32 +145,56 @@ public class Slots extends Game{
     }
 
     public void shuffle(){
-
         Random randomFace = new Random();
 
-        for(Tumbler tum: allTumblers){
-            tum.tumbler1 = randomFace.nextInt(20);
-            tum.tumbler2 = randomFace.nextInt(20);
-            tum.tumbler3 = randomFace.nextInt(20);
-            tum.tumbler4 = randomFace.nextInt(20);
-            tum.tumbler5 = randomFace.nextInt(20);
-        }
+        tum1.tumbler1 = randomFace.nextInt(8);
+        tum1.tumbler2 = randomFace.nextInt(8);
+        tum1.tumbler3 = randomFace.nextInt(8);
+        tum1.tumbler4 = randomFace.nextInt(8);
+        tum1.tumbler5 = randomFace.nextInt(8);
+
+        tum2.tumbler1 = tum1.tumbler1 + 1;
+        tum2.tumbler2 = tum1.tumbler2 + 1;
+        tum2.tumbler3 = tum1.tumbler3 + 1;
+        tum2.tumbler4 = tum1.tumbler4 + 1;
+        tum2.tumbler5 = tum1.tumbler5 + 1;
+
+        tum3.tumbler1 = tum1.tumbler1 + 2;
+        tum3.tumbler2 = tum1.tumbler2 + 2;
+        tum3.tumbler3 = tum1.tumbler3 + 2;
+        tum3.tumbler4 = tum1.tumbler4 + 2;
+        tum3.tumbler5 = tum1.tumbler5 + 2;
+
     }
 
     public void showFace(Tumbler tum,int tumbler){
-        //Display.showMessage(tum.getFace(tumbler));
-        System.out.println(tum.getFace(tumbler));
+        Display.showMessage("| "+tum.getFace(tumbler)+" |");
     }
 
     public void sendDisplayResultsAll(){
-        for(Tumbler tum: allTumblers){
-            showFace(tum,tum.tumbler1);
-            showFace(tum,tum.tumbler2);
-            showFace(tum,tum.tumbler3);
-            showFace(tum,tum.tumbler4);
-            showFace(tum,tum.tumbler5);
+            for(int roll = 10;roll > 0;roll--){
+                Display.showMessage(
+                        "| " + tum1.getFace(tum1.tumbler1-roll) + " | "
+                                + tum1.getFace(tum1.tumbler2-roll) + " | "
+                                + tum1.getFace(tum1.tumbler3-roll) + " | "
+                                + tum1.getFace(tum1.tumbler4-roll) + " | "
+                                + tum1.getFace(tum1.tumbler5-roll) + " |");
+            }
+
+        Display.showMessage("_____________________________");
+        for(int rolls =0;rolls<3;rolls++) {
+            Display.showMessage(
+                    "| " + tum1.getFace(tum1.tumbler1 + rolls) + " | "
+                            + tum1.getFace(tum1.tumbler2+ rolls) + " | "
+                            + tum1.getFace(tum1.tumbler3+ rolls) + " | "
+                            + tum1.getFace(tum1.tumbler4+ rolls) + " | "
+                            + tum1.getFace(tum1.tumbler5+ rolls) + " |");
         }
+        Display.showMessage("_____________________________");
+
     }
+
+
 
     public Boolean checkIfTumblerRowIsAllTheSame(Tumbler tum){
         if(tum.tumbler1 == tum.tumbler2 && tum.tumbler1 == tum.tumbler3 && tum.tumbler1 == tum.tumbler4 && tum.tumbler1 == tum.tumbler5){
@@ -182,7 +253,7 @@ public class Slots extends Game{
     }
 
     public void addMoneytoPurse(Player player, double winnings){
-        //player.addMoneyToPurse(winnings);
+        player.addMoneyToPurse(winnings);
     }
 
 }

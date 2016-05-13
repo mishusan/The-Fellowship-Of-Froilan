@@ -9,8 +9,8 @@ import org.junit.Test;
  */
 public class SlotsTest {
 
-    Slots slot;
-    Player player;
+    private Slots slot;
+    private Player player;
     @Before public void initialize(){
         slot = new Slots();
         player = new Player();
@@ -19,9 +19,7 @@ public class SlotsTest {
     @Test
     public void stopGameTest(){
         Boolean actualValue = slot.stopGame("yes");
-        Boolean expectedValue = true;
-
-        assertEquals("stop Game should return false if input is yes",expectedValue,actualValue);
+        assertTrue("stop Game should return false if input is yes",actualValue);
     }
 
     @Test
@@ -101,9 +99,9 @@ public class SlotsTest {
     @Test
     public void placeBetTest(){
 
-        double beforeActualValue = slot.pot;
+        double beforeActualValue = slot.getPot();
         slot.placeBet(player,50.0);
-        double afterActualValue = slot.pot;
+        double afterActualValue = slot.getPot();
         double expectedValue = 50.0;
 
         assertEquals("place bet should raise pot by given amount",0,beforeActualValue,0.01);
