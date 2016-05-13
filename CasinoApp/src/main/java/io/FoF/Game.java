@@ -23,7 +23,7 @@ public class Game {
 
     void shuffle(){};
 
-    int sendDisplayResults(){return 0;};
+    String sendDisplayResults(){return "";};
 
     void checkToSeeIfPlayerWon(){};
 
