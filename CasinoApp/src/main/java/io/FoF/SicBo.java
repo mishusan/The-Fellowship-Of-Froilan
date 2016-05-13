@@ -1,12 +1,9 @@
 package io.FoF;
 
 
-import io.FoF.SicBoPayoutCalculatorPackage.SicBoPayoutOnDiceValuesCalculator;
-import io.FoF.SicBoPayoutCalculatorPackage.SicBoPayoutOnSumsCalculator;
-import io.FoF.SicBoResultsChecker.*;
 
 /**
- * Created by matthewb on 5/11/16.
+ * Created by minlee on 5/11/16.
  */
 public class SicBo extends Game{
 
@@ -22,6 +19,7 @@ public class SicBo extends Game{
     private int[] dicesValues;
     private boolean stillPlaying = true;
     SicBoBetPayout sicBoBetPayout = new SicBoBetPayout();
+    SicBoBetInput sicBoBetInput = new SicBoBetInput();
 
     void startGame(Player player) {
         dicesValues = new int[3];
@@ -41,6 +39,7 @@ public class SicBo extends Game{
     }
 
     public void placeBet(Player player) {
+
         boolean doneBetting = false;
 
         int betTypeChoice = -1;
@@ -56,260 +55,29 @@ public class SicBo extends Game{
 
 
         while(betTypeChoice!=0){
+            display.showMessage("\nThe current amount in your purse is: "+player.getPurse());
             betTypeChoice = display.getIntPrompt("\nBetting Options:\n0: Done Bets\n1: Singles\n2: Doubles\n3: Triples\n4: Sums\n5: Specific 2 Dice\n6: Bet Small\n7: Bet Big\nHow would you like to bet?: ");
             switch (betTypeChoice){
                 case 1:
-                    betSpecificChoice = display.getIntPrompt("Which single would you like to bet on? (1 - 6): ");
-                    currentBetAmount = display.getIntPrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        switch (betSpecificChoice){
-                            case 1:
-                                singleBets[0] += currentBetAmount;
-                                break;
-                            case 2:
-                                singleBets[1] += currentBetAmount;
-                                break;
-                            case 3:
-                                singleBets[2] += currentBetAmount;
-                                break;
-                            case 4:
-                                singleBets[3] += currentBetAmount;
-                                break;
-                            case 5:
-                                singleBets[4] += currentBetAmount;
-                                break;
-                            case 6:
-                                singleBets[5] += currentBetAmount;
-                                break;
-                            default:
-                                display.showMessage("I'm sorry you did not pick a correct bet, no bets accepted");
-                                break;
-                        }
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    singleBets = sicBoBetInput.collectPlayerBetsOnSinglesOrDoubles(player, "Single");
                     break;
                 case 2:
-                    betSpecificChoice = display.getIntPrompt("Which double would you like to bet on? (1 - 6): ");
-                    currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        switch (betSpecificChoice){
-                            case 1:
-                                doubleBets[0] += currentBetAmount;
-                                break;
-                            case 2:
-                                doubleBets[1] += currentBetAmount;
-                                break;
-                            case 3:
-                                doubleBets[2] += currentBetAmount;
-                                break;
-                            case 4:
-                                doubleBets[3] += currentBetAmount;
-                                break;
-                            case 5:
-                                doubleBets[4] += currentBetAmount;
-                                break;
-                            case 6:
-                                doubleBets[5] += currentBetAmount;
-                                break;
-                            default:
-                                display.showMessage("I'm sorry you did not pick a correct bet, no bets accepted");
-                                break;
-                        }
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    doubleBets = sicBoBetInput.collectPlayerBetsOnSinglesOrDoubles(player, "Double");
                     break;
                 case 3:
-                    betSpecificChoice = display.getIntPrompt("Which triple would you like to bet on? (1 - 6) or 0 for any triple: ");
-                    currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        switch (betSpecificChoice){
-                            case 0:
-                                tripleBets[0] += currentBetAmount;
-                                break;
-                            case 1:
-                                tripleBets[1] += currentBetAmount;
-                                break;
-                            case 2:
-                                tripleBets[2] += currentBetAmount;
-                                break;
-                            case 3:
-                                tripleBets[3] += currentBetAmount;
-                                break;
-                            case 4:
-                                tripleBets[4] += currentBetAmount;
-                                break;
-                            case 5:
-                                tripleBets[5] += currentBetAmount;
-                                break;
-                            case 6:
-                                tripleBets[6] += currentBetAmount;
-                                break;
-                            default:
-                                display.showMessage("I'm sorry you did not pick a correct bet, no bets accepted");
-                                break;
-                        }
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    tripleBets = sicBoBetInput.collectPlayerBetsOnTriples(player);
                     break;
                 case 4:
-                    betSpecificChoice = display.getIntPrompt("Which Sum would you like to bet on? (4 - 17): ");
-                    currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        switch (betSpecificChoice){
-                            case 4:
-                                sumBets[0] += currentBetAmount;
-                                break;
-                            case 5:
-                                sumBets[1] += currentBetAmount;
-                                break;
-                            case 6:
-                                sumBets[2] += currentBetAmount;
-                                break;
-                            case 7:
-                                sumBets[3] += currentBetAmount;
-                                break;
-                            case 8:
-                                sumBets[4] += currentBetAmount;
-                                break;
-                            case 9:
-                                sumBets[5] += currentBetAmount;
-                                break;
-                            case 10:
-                                sumBets[6] += currentBetAmount;
-                                break;
-                            case 11:
-                                sumBets[7] += currentBetAmount;
-                                break;
-                            case 12:
-                                sumBets[8] += currentBetAmount;
-                                break;
-                            case 13:
-                                sumBets[9] += currentBetAmount;
-                                break;
-                            case 14:
-                                sumBets[10] += currentBetAmount;
-                                break;
-                            case 15:
-                                sumBets[11] += currentBetAmount;
-                                break;
-                            case 16:
-                                sumBets[12] += currentBetAmount;
-                                break;
-                            case 17:
-                                sumBets[13] += currentBetAmount;
-                                break;
-                            default:
-                                display.showMessage("I'm sorry you did not pick a correct bet, no bets accepted");
-                                break;
-                        }
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    sumBets = sicBoBetInput.collectPlayerBetsOnSum(player);
                     break;
                 case 5:
-                    betSpecificChoice = display.getIntPrompt("Which Specific 2 die combination would you like to bet on?\n 1: 1 & 2\n" +
-                            " 2: 1 & 3\n" +
-                            " 3: 1 & 4\n" +
-                            " 4: 1 & 5\n" +
-                            " 5: 1 & 6\n" +
-                            " 6: 2 & 3\n" +
-                            " 7: 2 & 4\n" +
-                            " 8: 2 & 5\n" +
-                            " 9: 2 & 6\n" +
-                            "10: 3 & 4\n" +
-                            "11: 3 & 5\n" +
-                            "12: 3 & 6\n" +
-                            "13: 4 & 5\n" +
-                            "14: 4 & 6\n" +
-                            "15: 5 & 6");
-                    currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        switch (betSpecificChoice){
-                            case 1:
-                                twoDieBets[0] += currentBetAmount;
-                                break;
-                            case 2:
-                                twoDieBets[1] += currentBetAmount;
-                                break;
-                            case 3:
-                                twoDieBets[2] += currentBetAmount;
-                                break;
-                            case 4:
-                                twoDieBets[3] += currentBetAmount;
-                                break;
-                            case 5:
-                                twoDieBets[4] += currentBetAmount;
-                                break;
-                            case 6:
-                                twoDieBets[5] += currentBetAmount;
-                                break;
-                            case 7:
-                                twoDieBets[6] += currentBetAmount;
-                                break;
-                            case 8:
-                                twoDieBets[7] += currentBetAmount;
-                                break;
-                            case 9:
-                                twoDieBets[8] += currentBetAmount;
-                                break;
-                            case 10:
-                                twoDieBets[9] += currentBetAmount;
-                                break;
-                            case 11:
-                                twoDieBets[10] += currentBetAmount;
-                                break;
-                            case 12:
-                                twoDieBets[11] += currentBetAmount;
-                                break;
-                            case 13:
-                                twoDieBets[12] += currentBetAmount;
-                                break;
-                            case 14:
-                                twoDieBets[13] += currentBetAmount;
-                                break;
-                            case 15:
-                                twoDieBets[14] += currentBetAmount;
-                                break;
-                            default:
-                                display.showMessage("I'm sorry you did not pick a correct bet, no bets accepted");
-                                break;
-                        }
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    twoDieBets = sicBoBetInput.collectPlayerBetsOnSpecific2Die(player);
                     break;
                 case 6:
-                    currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        smallBet += currentBetAmount;
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    smallBet = sicBoBetInput.collectPlayerBetsOnSmallorBig(player);
                     break;
                 case 7:
-                    currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
-                    if(checkAmountInPurse(player,currentBetAmount+totalBetPerRound)){
-                        totalBetPerRound+=currentBetAmount;
-                        bigBet += currentBetAmount;
-                    }
-                    else {
-                        display.showMessage("You do not have enough money, bet again");
-                    }
+                    bigBet = sicBoBetInput.collectPlayerBetsOnSmallorBig(player);
                     break;
             }
         }
@@ -344,17 +112,7 @@ public class SicBo extends Game{
         payoutTotal += sicBoBetPayout.returnPayoutForSpecific2Die(dicesValues,twoDieBets);
         payoutTotal += sicBoBetPayout.returnPayoutForSmallBet(dicesValues,smallBet);
         payoutTotal += sicBoBetPayout.returnPayoutForBigBet(dicesValues,bigBet);
-        display.showMessage("Your winnings this round are: "+(payoutTotal));
+        display.showMessage("Your putting - "+(payoutTotal)+" back to your purse");
         player.addMoneyToPurse(payoutTotal);
-
-
-
-
-
-
-    }
-
-
-    public void stopGame(){
     }
 }

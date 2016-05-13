@@ -79,4 +79,5 @@ public class SicBoCheckForDoublesSpec {
         boolean actualResult = sicBoCheckForDiceDoubles.checkForDouble6s(dices);
         Assert.assertEquals(expectedResult,actualResult);
     }
+
 }

@@ -26,7 +26,7 @@ public class SicBoBetPayout {
             payout+=sicBoPayoutOnDiceValuesCalculator.calculateAnyTripleWinnings(tripleBets[0]);
         }
         if(sicBoCheckForDiceTriples.checkForAnyTriple1s(diceValues)){
-            payout+=sicBoPayoutOnDiceValuesCalculator.calculateAnyTripleWinnings(tripleBets[1]);
+            payout+=sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[1]);
         }
         if(sicBoCheckForDiceTriples.checkForAnyTriple2s(diceValues)){
             payout+=sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[2]);
