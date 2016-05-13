@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class Deck{
+public class Deck {
 
     private ArrayList<Card> deckOfCards = new ArrayList<Card>();
 
@@ -19,7 +19,8 @@ public class Deck{
             }
         }
     }
-    public void shuffle(){
+
+    public void shuffle() {
         Collections.shuffle(deckOfCards);
     }
 

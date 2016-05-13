@@ -33,6 +33,7 @@ public class Player {
     public void removeMoneyFromPurse(double dollar) {
         setPurse(purse - dollar);
     }
+
     public void addMoneyToPurse(double dollar) {
         setPurse(purse + dollar);
     }

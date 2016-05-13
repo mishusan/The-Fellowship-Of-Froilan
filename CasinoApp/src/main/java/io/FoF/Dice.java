@@ -11,17 +11,17 @@ public class Dice {
 
     private String diceASCII;
 
-    public Dice(){
+    public Dice() {
         roll();
     }
 
-    public int diceValue(){
+    public int diceValue() {
         return diceValue;
     }
 
-    public void roll(){
+    public void roll() {
         Random random = new Random();
-        diceValue = random.nextInt(6)+1;
+        diceValue = random.nextInt(6) + 1;
     }
 
 }

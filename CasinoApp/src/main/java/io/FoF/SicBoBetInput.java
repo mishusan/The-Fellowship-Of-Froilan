@@ -40,7 +40,7 @@ public class SicBoBetInput {
                     madeCorrectBet = false;
                     break;
             }
-            if(madeCorrectBet){
+            if (madeCorrectBet) {
                 player.removeMoneyFromPurse(currentBetAmount);
             }
         } else {
@@ -84,7 +84,7 @@ public class SicBoBetInput {
                     madeCorrectBet = false;
                     break;
             }
-            if(madeCorrectBet){
+            if (madeCorrectBet) {
                 player.removeMoneyFromPurse(currentBetAmount);
             }
         } else {
@@ -149,9 +149,10 @@ public class SicBoBetInput {
                     madeCorrectBet = false;
                     break;
             }
-            if(madeCorrectBet){
+            if (madeCorrectBet) {
                 player.removeMoneyFromPurse(currentBetAmount);
-            }        } else {
+            }
+        } else {
             display.showMessage("You do not have enough money, bet different amount or end betting");
         }
         return sumBets;
@@ -159,7 +160,7 @@ public class SicBoBetInput {
     }
 
     public int[] collectPlayerBetsOnSpecific2Die(Player player) {
-        int[] twoDieBets = new int[6];
+        int[] twoDieBets = new int[15];
         int betSpecificChoice;
         int currentBetAmount;
         boolean madeCorrectBet = true;
@@ -231,7 +232,7 @@ public class SicBoBetInput {
                     madeCorrectBet = false;
                     break;
             }
-            if(madeCorrectBet){
+            if (madeCorrectBet) {
                 player.removeMoneyFromPurse(currentBetAmount);
             }
         } else {
@@ -246,11 +247,10 @@ public class SicBoBetInput {
         int betSpecificChoice;
         int currentBetAmount;
         currentBetAmount = display.getIntPrompt("How much do you want to bet?: ");
-        if(game.checkAmountInPurse(player,currentBetAmount)){
+        if (game.checkAmountInPurse(player, currentBetAmount)) {
             bet += currentBetAmount;
             player.removeMoneyFromPurse(currentBetAmount);
-        }
-        else {
+        } else {
             display.showMessage("You do not have enough money, bet again");
         }
         return bet;

@@ -7,7 +7,7 @@ import java.util.Random;
  * Created by matthewb on 5/11/16.
  */
 
-public class Slots extends Game{
+public class Slots extends Game {
 
 
     private Boolean stopPlayingSlots;
@@ -20,7 +20,7 @@ public class Slots extends Game{
     private Tumbler tum2;
     private Tumbler tum3;
 
-    public Slots(){
+    public Slots() {
 
         this.stopPlayingSlots = false;
         this.allTumblers = new ArrayList<Tumbler>();
@@ -83,24 +83,21 @@ public class Slots extends Game{
     }
 
 
-
-
-
-    public void startGame(Player player){
+    public void startGame(Player player) {
         allTumblers.add(tum1);
         allTumblers.add(tum2);
         allTumblers.add(tum3);
-        while(!stopPlayingSlots){
+        while (!stopPlayingSlots) {
             Display.showMessage(player.getPurse());
             betPlaced = false;
-            while(!betPlaced){
+            while (!betPlaced) {
                 double currentBet = Display.getDoublePrompt("How much you betting?");
-                if(checkAmountInPurse(player,currentBet)){
-                    placeBet(player,currentBet);
-                    removeMoneyFromPurse(player,currentBet);
+                if (checkAmountInPurse(player, currentBet)) {
+                    placeBet(player, currentBet);
+                    removeMoneyFromPurse(player, currentBet);
                     betPlaced = true;
-                }
-                else{
+
+                } else {
                     Display.showMessage("You're broke Nurudeen is escorting you to the ATM");
                     stopPlayingSlots = true;
                     break;
@@ -110,41 +107,40 @@ public class Slots extends Game{
                 sendDisplayResultsAll();
                 checkToSeeIfPlayerWon();
                 checkNumOfPaylines();
-                addMoneytoPurse(player,winnings);
+                addMoneytoPurse(player, winnings);
                 String choice = Display.getStringPrompt("Are you done playing?");
                 stopPlayingSlots = stopGame(choice);
             }
         }
     }
 
-    public Boolean stopGame(String choice){
+    public Boolean stopGame(String choice) {
 
-        if(choice.equals("yes") || choice.equals("Yes") || choice.equals("y")){
+        if (choice.equals("yes") || choice.equals("Yes") || choice.equals("y")) {
             return true;
         }
         return false;
     }
 
 
-    public void placeBet(Player player,double bet){
+    public void placeBet(Player player, double bet) {
         pot += bet;
     }
 
-    public void removeMoneyFromPurse(Player player,double bet){
+    public void removeMoneyFromPurse(Player player, double bet) {
         player.removeMoneyFromPurse(bet);
     }
 
-    public Boolean checkAmountInPurse(Player player, double bet){
-        if(bet > player.getPurse()){
+    public Boolean checkAmountInPurse(Player player, double bet) {
+        if (bet > player.getPurse()) {
             Display.showMessage("Not enought Moolah $$" + player.getPurse());
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    public void shuffle(){
+    public void shuffle() {
         Random randomFace = new Random();
 
         tum1.tumbler1 = randomFace.nextInt(8);
@@ -167,66 +163,65 @@ public class Slots extends Game{
 
     }
 
-    public void showFace(Tumbler tum,int tumbler){
-        Display.showMessage("| "+tum.getFace(tumbler)+" |");
+    public void showFace(Tumbler tum, int tumbler) {
+        Display.showMessage("| " + tum.getFace(tumbler) + " |");
     }
 
-    public void sendDisplayResultsAll(){
-            for(int roll = 10;roll > 0;roll--){
-                Display.showMessage(
-                        "| " + tum1.getFace(tum1.tumbler1-roll) + " | "
-                                + tum1.getFace(tum1.tumbler2-roll) + " | "
-                                + tum1.getFace(tum1.tumbler3-roll) + " | "
-                                + tum1.getFace(tum1.tumbler4-roll) + " | "
-                                + tum1.getFace(tum1.tumbler5-roll) + " |");
-            }
+    public void sendDisplayResultsAll() {
+        for (int roll = 10; roll > 0; roll--) {
+            Display.showMessage(
+                    "| " + tum1.getFace(tum1.tumbler1 - roll) + " | "
+                            + tum1.getFace(tum1.tumbler2 - roll) + " | "
+                            + tum1.getFace(tum1.tumbler3 - roll) + " | "
+                            + tum1.getFace(tum1.tumbler4 - roll) + " | "
+                            + tum1.getFace(tum1.tumbler5 - roll) + " |");
+        }
 
         Display.showMessage("_____________________________");
-        for(int rolls =0;rolls<3;rolls++) {
+        for (int rolls = 0; rolls < 3; rolls++) {
             Display.showMessage(
                     "| " + tum1.getFace(tum1.tumbler1 + rolls) + " | "
-                            + tum1.getFace(tum1.tumbler2+ rolls) + " | "
-                            + tum1.getFace(tum1.tumbler3+ rolls) + " | "
-                            + tum1.getFace(tum1.tumbler4+ rolls) + " | "
-                            + tum1.getFace(tum1.tumbler5+ rolls) + " |");
+                            + tum1.getFace(tum1.tumbler2 + rolls) + " | "
+                            + tum1.getFace(tum1.tumbler3 + rolls) + " | "
+                            + tum1.getFace(tum1.tumbler4 + rolls) + " | "
+                            + tum1.getFace(tum1.tumbler5 + rolls) + " |");
         }
         Display.showMessage("_____________________________");
 
     }
 
 
-
-    public Boolean checkIfTumblerRowIsAllTheSame(Tumbler tum){
-        if(tum.tumbler1 == tum.tumbler2 && tum.tumbler1 == tum.tumbler3 && tum.tumbler1 == tum.tumbler4 && tum.tumbler1 == tum.tumbler5){
+    public Boolean checkIfTumblerRowIsAllTheSame(Tumbler tum) {
+        if (tum.tumbler1 == tum.tumbler2 && tum.tumbler1 == tum.tumbler3 && tum.tumbler1 == tum.tumbler4 && tum.tumbler1 == tum.tumbler5) {
             return true;
         }
         return false;
     }
 
-    public Boolean checkForPaylineFour(Tumbler tum1,Tumbler tum2, Tumbler tum3){
-        if(tum1.tumbler1 == tum2.tumbler2 && tum1.tumbler1 == tum3.tumbler3 && tum1.tumbler1 == tum2.tumbler4 && tum1.tumbler1 == tum1.tumbler5){
+    public Boolean checkForPaylineFour(Tumbler tum1, Tumbler tum2, Tumbler tum3) {
+        if (tum1.tumbler1 == tum2.tumbler2 && tum1.tumbler1 == tum3.tumbler3 && tum1.tumbler1 == tum2.tumbler4 && tum1.tumbler1 == tum1.tumbler5) {
             return true;
         }
         return false;
     }
 
-    public Boolean checkForPaylineFive(Tumbler tum1,Tumbler tum2, Tumbler tum3){
-        if(tum3.tumbler1 == tum2.tumbler2 && tum3.tumbler1 == tum1.tumbler3 && tum3.tumbler1 == tum2.tumbler4 && tum3.tumbler1 == tum3.tumbler5){
+    public Boolean checkForPaylineFive(Tumbler tum1, Tumbler tum2, Tumbler tum3) {
+        if (tum3.tumbler1 == tum2.tumbler2 && tum3.tumbler1 == tum1.tumbler3 && tum3.tumbler1 == tum2.tumbler4 && tum3.tumbler1 == tum3.tumbler5) {
             return true;
         }
         return false;
     }
 
-    public void checkToSeeIfPlayerWon(){
-        for(Tumbler tum : allTumblers){
-            if(checkIfTumblerRowIsAllTheSame(tum)){
+    public void checkToSeeIfPlayerWon() {
+        for (Tumbler tum : allTumblers) {
+            if (checkIfTumblerRowIsAllTheSame(tum)) {
                 numOfPaylines++;
             }
         }
-        if(checkForPaylineFour(tum1,tum2,tum3)){
+        if (checkForPaylineFour(tum1, tum2, tum3)) {
             numOfPaylines++;
         }
-        if(checkForPaylineFive(tum1,tum2,tum3)){
+        if (checkForPaylineFive(tum1, tum2, tum3)) {
             numOfPaylines++;
         }
     }
@@ -239,20 +234,20 @@ public class Slots extends Game{
             winnings = pot;
         }
         if (numOfPaylines == 2) {
-            winnings = pot*2;
+            winnings = pot * 2;
         }
         if (numOfPaylines == 3) {
-            winnings = pot*3;
+            winnings = pot * 3;
         }
         if (numOfPaylines == 4) {
-            winnings = pot*4;
+            winnings = pot * 4;
         }
         if (numOfPaylines == 5) {
-            winnings = pot*10;
+            winnings = pot * 10;
         }
     }
 
-    public void addMoneytoPurse(Player player, double winnings){
+    public void addMoneytoPurse(Player player, double winnings) {
         player.addMoneyToPurse(winnings);
     }
 

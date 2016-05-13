@@ -1,11 +1,10 @@
 package io.FoF;
 
 
-
 /**
  * Created by minlee on 5/11/16.
  */
-public class SicBo extends Game{
+public class SicBo extends Game {
 
     private Dice dice1, dice2, dice3;
 
@@ -26,11 +25,11 @@ public class SicBo extends Game{
         while (stillPlaying) {
             placeBet(player);
             shuffle();
-            display.showMessage("\n"+sendDisplayResults()+"\n");
+            display.showMessage("\n" + sendDisplayResults() + "\n");
             checkToSeeIfPlayerWon(player);
-            display.showMessage("\nYou have "+player.getPurse()+" dollars left in your purse");
+            display.showMessage("\nYou have " + player.getPurse() + " dollars left in your purse");
 
-            if(display.getStringPrompt("Are you done playing?(yes or no): ").equals("yes")){
+            if (display.getStringPrompt("Are you done playing?(yes or no): ").equals("yes")) {
                 stillPlaying = false;
             }
 
@@ -54,10 +53,10 @@ public class SicBo extends Game{
         twoDieBets = new int[15];
 
 
-        while(betTypeChoice!=0){
-            display.showMessage("\nThe current amount in your purse is: "+player.getPurse());
+        while (betTypeChoice != 0) {
+            display.showMessage("\nThe current amount in your purse is: " + player.getPurse());
             betTypeChoice = display.getIntPrompt("\nBetting Options:\n0: Done Bets\n1: Singles\n2: Doubles\n3: Triples\n4: Sums\n5: Specific 2 Dice\n6: Bet Small\n7: Bet Big\nHow would you like to bet?: ");
-            switch (betTypeChoice){
+            switch (betTypeChoice) {
                 case 1:
                     singleBets = sicBoBetInput.collectPlayerBetsOnSinglesOrDoubles(player, "Single");
                     break;
@@ -85,7 +84,6 @@ public class SicBo extends Game{
         player.removeMoneyFromPurse(totalBetPerRound);
 
 
-
     }
 
 
@@ -99,20 +97,20 @@ public class SicBo extends Game{
     }
 
     public String sendDisplayResults() {
-        return "Dice rolls are: "+dice1.diceValue()+"  "+dice2.diceValue()+"  "+dice3.diceValue();
+        return "Dice rolls are: " + dice1.diceValue() + "  " + dice2.diceValue() + "  " + dice3.diceValue();
     }
 
     public void checkToSeeIfPlayerWon(Player player) {
         int payoutTotal = 0;
-        payoutTotal += sicBoBetPayout.returnPayoutForTriples(dicesValues,tripleBets);
-        payoutTotal += sicBoBetPayout.returnPayoutForDoubles(dicesValues,doubleBets);
-        payoutTotal += sicBoBetPayout.returnPayoutForSingles(dicesValues,singleBets);
-        payoutTotal += sicBoBetPayout.returnPayoutForSums(dicesValues,sumBets);
-        payoutTotal += sicBoBetPayout.returnPayoutForSums(dicesValues,twoDieBets);
-        payoutTotal += sicBoBetPayout.returnPayoutForSpecific2Die(dicesValues,twoDieBets);
-        payoutTotal += sicBoBetPayout.returnPayoutForSmallBet(dicesValues,smallBet);
-        payoutTotal += sicBoBetPayout.returnPayoutForBigBet(dicesValues,bigBet);
-        display.showMessage("Your putting - "+(payoutTotal)+" back to your purse");
+        payoutTotal += sicBoBetPayout.returnPayoutForTriples(dicesValues, tripleBets);
+        payoutTotal += sicBoBetPayout.returnPayoutForDoubles(dicesValues, doubleBets);
+        payoutTotal += sicBoBetPayout.returnPayoutForSingles(dicesValues, singleBets);
+        payoutTotal += sicBoBetPayout.returnPayoutForSums(dicesValues, sumBets);
+        payoutTotal += sicBoBetPayout.returnPayoutForSums(dicesValues, twoDieBets);
+        payoutTotal += sicBoBetPayout.returnPayoutForSpecific2Die(dicesValues, twoDieBets);
+        payoutTotal += sicBoBetPayout.returnPayoutForSmallBet(dicesValues, smallBet);
+        payoutTotal += sicBoBetPayout.returnPayoutForBigBet(dicesValues, bigBet);
+        display.showMessage("Your putting - " + (payoutTotal) + " back to your purse");
         player.addMoneyToPurse(payoutTotal);
     }
 }

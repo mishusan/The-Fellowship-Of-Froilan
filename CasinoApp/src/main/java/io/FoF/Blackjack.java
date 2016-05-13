@@ -14,7 +14,7 @@ public class Blackjack extends CardGame {
     boolean dealerHasTurn = true;
 
     public void startGame() {
-        //System.out.println("Purse before game: " + blackjackPlayer.getPurse());
+        Display.showMessage("Purse before game: " + blackjackPlayer.getPurse());
         getBetPlayerWantsToPlace();
         shuffleCardsTwice();
         dealCards();
@@ -22,7 +22,7 @@ public class Blackjack extends CardGame {
         handlePlayersTurn();
         handleDealersTurn();
         checkWhoWonTheHand();
-        //System.out.println("Purse after game: " + blackjackPlayer.getPurse());
+        Display.showMessage("Purse after game: " + blackjackPlayer.getPurse());
     }
 
     public void getBetPlayerWantsToPlace() {
@@ -70,7 +70,7 @@ public class Blackjack extends CardGame {
     }
 
     public void hitOrStayHandler(String playerHitOrStay) {
-        switch (playerHitOrStay) {
+        switch (playerHitOrStay.toLowerCase()) {
             case "h":
                 addCardToPlayersHand();
                 Display.showMessage(blackjackPlayer.printHand(true));
@@ -86,7 +86,7 @@ public class Blackjack extends CardGame {
         }
     }
 
-    public void addCardToPlayersHand(){
+    public void addCardToPlayersHand() {
         blackjackPlayer.addCardToHand(deck.dealNextCard());
         Display.showMessage("--Your new hand--: ");
     }
@@ -100,7 +100,7 @@ public class Blackjack extends CardGame {
     public void checkIfDealersHandIsBelow17AndMustHit() {
         if (dealer.getHandTotalValue() < 17)
             Display.showMessage("Dealer Hits: \n" + dealer.printHand(true));
-            dealer.addCardToHand(deck.dealNextCard());
+        dealer.addCardToHand(deck.dealNextCard());
     }
 
     public void checkIfDealerBusts() {
@@ -143,14 +143,14 @@ public class Blackjack extends CardGame {
             playerHasTurn = false;
     }
 
-    public void checkIfPlayerBustsEndingTheirTurn(){
+    public void checkIfPlayerBustsEndingTheirTurn() {
         if (isPlayerHandOver21()) {
             showPlayerBustsMessage();
             endBlackjackGame();
         }
     }
 
-    public void showPlayerBustsMessage(){
+    public void showPlayerBustsMessage() {
         Display.showMessage("BUST");
         Display.showMessage(dealer.getName() + " has WON!, you bust");
     }
@@ -170,12 +170,12 @@ public class Blackjack extends CardGame {
             return false;
     }
 
-    public void playerChoosesToStayEndingTheirTurn(){
+    public void playerChoosesToStayEndingTheirTurn() {
         Display.showMessage(blackjackPlayer.getName() + " stays.\n");
         playerHasTurn = false;
     }
 
-    public void endBlackjackGame(){
+    public void endBlackjackGame() {
         dealerHasTurn = false;
         playerHasTurn = false;
     }

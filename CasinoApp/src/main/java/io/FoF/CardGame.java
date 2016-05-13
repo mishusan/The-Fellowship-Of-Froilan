@@ -2,6 +2,6 @@ package io.FoF;
 
 
 public abstract class CardGame {
-  static Deck deck = new Deck();
+    static Deck deck = new Deck();
 
 }

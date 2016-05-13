@@ -1,5 +1,8 @@
 package io.FoF;
+
 import org.omg.CORBA.Object;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -8,7 +11,7 @@ public class Display {
 
 
     static void welcome(String name) {
-        System.out.println("Hello " + name + " and WELCOME to the FoF casino.\n We thank you for all your donations to the Fellowship.");
+        System.out.println("Hello, " + name + " and WELCOME to the FoF casino.\nWe thank you for all your donations to the Fellowship.");
     }
 
 
@@ -65,15 +68,19 @@ public class Display {
         System.out.print(msg);
     }
 
-    static int getIntPrompt(String promptMsg){
+    static int getIntPrompt(String promptMsg) {
         int userInput = 0;
-        while(true) {
+        while (true) {
             printMessage(promptMsg);
             try {
                 userInput = input.nextInt();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("I need an integer please");
+            }catch(InputMismatchException e){
+                System.out.println("I need an integer please");
+            }catch(IndexOutOfBoundsException e){
+                System.out.println("Illegal Option");
             }
             if (input.hasNextLine()) {
                 input.nextLine();
@@ -82,35 +89,43 @@ public class Display {
         return userInput;
     }
 
-    static String getStringPrompt(String promptMsg){
+    static String getStringPrompt(String promptMsg) {
         printMessage(promptMsg);
         String userInput = "";
-        while (true){
+        while (true) {
             try {
-                userInput = input.nextLine();
-                break;
+                userInput = input.next();
+                if (input.hasNextLine()) {
+                    input.nextLine();
+                }
+                return userInput;
+
             } catch (IllegalArgumentException e) {
                 System.out.println("I need an string please");
             }
         }
-        return userInput;
+        //return userInput;
     }
 
-    static double getDoublePrompt(String promptMsg){
+    static double getDoublePrompt(String promptMsg) {
         printMessage(promptMsg);
         double userInput = 0.0;
-        while(true){
+        while (true) {
             try {
                 userInput = input.nextDouble();
-                break;
+                if (input.hasNextLine()) {
+                    input.nextLine();
+                }
+                return userInput;
             } catch (IllegalArgumentException e) {
                 System.out.println("I need an double please");
+            }catch (InputMismatchException e){
+                System.out.println("I need an double please");
             }
-            if (input.hasNextLine()) {
-                input.nextLine();
-            }
+
+
         }
-        return userInput;
+        //return userInput;
     }
 
 }
