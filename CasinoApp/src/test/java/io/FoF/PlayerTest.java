@@ -73,4 +73,5 @@ public class PlayerTest {
         double actualDollar = player.getPurse();
         assertEquals("The expected value should be 10.0",expectedDollar,actualDollar,0);
     }
+
 }
