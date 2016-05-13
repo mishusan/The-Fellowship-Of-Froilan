@@ -7,37 +7,38 @@ public class Casino {
     Player player = new Player();
     boolean stillInCasino = true;
 
-    public void createPlayer(){
+    public void createPlayer() {
 
         player.setName(display.getStringPrompt("What is your name?"));
         player.setAge(display.getIntPrompt("what is your age?"));
         player.setPurse(display.getDoublePrompt("How much money would you like to throw away?"));
     }
 
-    public void runCasino(){
+    public void runCasino() {
         createPlayer();
-        if (checkAge(player)){
-            while(stillInCasino) {
+        if (checkAge(player)) {
+            while (stillInCasino) {
                 gameSelectionOption();
                 game = display.getIntPrompt("What do you choose?");
                 gameSelection(game);
             }
-        }else{
-           display.showMessage("Goodbye!");
+        } else {
+            display.showMessage("Goodbye!");
         }
         display.showMessage("Thanks for playing!");
     }
 
-    public boolean checkAge(Player player){
-        if (player.getAge() < 21){
+    public boolean checkAge(Player player) {
+        if (player.getAge() < 21) {
             display.showMessage("Too young to play, Norodeen will escort you out!");
             return false;
-        }else {
+        } else {
             display.showMessage("Lets Play!");
             return true;
         }
     }
-    public void gameSelectionOption(){
+
+    public void gameSelectionOption() {
         display.showMessage("Gameplay options: ");
         display.showMessage("To play Black Jack: press 1");
         display.showMessage("To play Sic Bo: press 2");
@@ -45,25 +46,28 @@ public class Casino {
         display.showMessage("To exit: press 4");
     }
 
-    public void gameSelection(int game){
-        switch (game){
-            case 1: Blackjack blackJack = new Blackjack();
-                blackJack.startGame(player);
+    public void gameSelection(int game) {
+        switch (game) {
+            case 1:
+                Blackjack blackjack = new Blackjack(player);
+               blackjack.startGame();
                 break;
-            case 2: SicBo sicBo = new SicBo();
-                sicBo.startGame(player);
+            case 2:
+                SicBo sicBo = new SicBo();
                 break;
-            case 3: Slots slots =  new Slots();
-                slots.startGame(player);
+            case 3:
+                Slots slots = new Slots();
                 break;
-            case 4: exitCasino();
+            case 4:
+                exitCasino();
                 break;
             default:
                 display.showMessage("Sorry that is not an option.");
         }
     }
 
-    public void exitCasino(){
+
+    public void exitCasino() {
         stillInCasino = false;
     }
 }

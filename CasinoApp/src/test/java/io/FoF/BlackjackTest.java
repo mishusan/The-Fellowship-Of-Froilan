@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 public class BlackjackTest {
 
+    Player player;
     Blackjack blackjack;
     BlackjackPlayer blackjackPlayer;
     Deck deck;
@@ -15,7 +16,9 @@ public class BlackjackTest {
 
     @Before
     public void setup() {
-        blackjack = new Blackjack();
+        player = new Player();
+        player.setName("Mike");
+        blackjack = new Blackjack(player);
         blackjackPlayer = new BlackjackPlayer("TestPlayer");
         deck = new Deck();
         card = new Card(Suit.Clubs, 5);
