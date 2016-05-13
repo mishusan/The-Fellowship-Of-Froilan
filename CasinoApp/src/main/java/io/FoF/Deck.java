@@ -4,9 +4,10 @@ package io.FoF;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 
-public class Deck {
+public class Deck{
 
     private ArrayList<Card> deckOfCards = new ArrayList<Card>();
 
@@ -17,6 +18,9 @@ public class Deck {
                 this.deckOfCards.add(new Card(Suit.values()[i], j));
             }
         }
+    }
+    public void shuffle(){
+        Collections.shuffle(deckOfCards);
     }
 
     public Card dealNextCard() {

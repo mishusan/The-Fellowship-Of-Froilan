@@ -2,9 +2,7 @@ package io.FoF;
 
 import java.util.ArrayList;
 
-/**
- * Created by michaelcarroll on 5/11/16.
- */
+
 public class BlackjackPlayer extends Player {
 
     private String name;
@@ -12,7 +10,12 @@ public class BlackjackPlayer extends Player {
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int numberOfCardsInHand = 0;
 
-    public BlackjackPlayer(String name) {
+    public BlackjackPlayer(Player player)
+     {
+      name = player.getName();
+
+    }
+    public BlackjackPlayer(String name){
         this.name = name;
     }
 
