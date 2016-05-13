@@ -8,6 +8,4 @@ public class CasinoApp {
         Casino casino = new Casino();
         casino.runCasino();
     }
-
-
 }
