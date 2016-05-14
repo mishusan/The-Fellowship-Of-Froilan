@@ -140,59 +140,45 @@ public class SicBoBetPayout {
         int payout = 0;
         if (sicBoCheckForSums.checkSumFor4(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf4and17Winnings(sumBets[0]);
-
         }
         if (sicBoCheckForSums.checkSumFor5(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf5and16Winnings(sumBets[1]);
-
         }
         if (sicBoCheckForSums.checkSumFor6(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf6and15Winnings(sumBets[2]);
-
         }
         if (sicBoCheckForSums.checkSumFor7(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf7and14Winnings(sumBets[3]);
-
         }
         if (sicBoCheckForSums.checkSumFor8(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf8and13Winnings(sumBets[4]);
-
         }
         if (sicBoCheckForSums.checkSumFor9(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[5]);
-
         }
         if (sicBoCheckForSums.checkSumFor10(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[6]);
-
         }
         if (sicBoCheckForSums.checkSumFor11(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[7]);
-
         }
         if (sicBoCheckForSums.checkSumFor12(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[8]);
-
         }
         if (sicBoCheckForSums.checkSumFor13(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf8and13Winnings(sumBets[9]);
-
         }
         if (sicBoCheckForSums.checkSumFor14(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf7and14Winnings(sumBets[10]);
-
         }
         if (sicBoCheckForSums.checkSumFor15(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf6and15Winnings(sumBets[11]);
-
         }
         if (sicBoCheckForSums.checkSumFor16(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf5and16Winnings(sumBets[12]);
-
         }
         if (sicBoCheckForSums.checkSumFor17(diceValues)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf4and17Winnings(sumBets[13]);
-
         }
         return payout;
     }
