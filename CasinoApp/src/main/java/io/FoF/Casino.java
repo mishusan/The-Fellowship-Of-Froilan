@@ -12,7 +12,7 @@ public class Casino {
     boolean memberOfCasino;
     public int numberOfMembers;
 
-    public Casino() {
+    public Casino(){
         this.game = 0;
         this.stillInCasino = true;
         this.playerArrayList = new ArrayList<Player>();
@@ -21,21 +21,19 @@ public class Casino {
         this.numberOfMembers = 0;
     }
 
-    public void createPlayer() {
+    public void createPlayer(){
         Player player = new Player();
         player.setName(Display.getStringPrompt("What is your name?"));
         Display.welcome(player.getName());
         player.setAge(Display.getIntPrompt("What is your age?"));
-        player.setPurse(Display.getDoublePrompt("How much money would you like to donate to fellowship of Froilan"));
+        checkAgeOfPlayer(player);
         playerArrayList.add(player);
         numberOfMembers++;
     }
-
     public Player selectPlayer(int playerId) {
         return playerArrayList.get(playerId);
     }
-
-    public void checkIfPlayerExists() {
+    public void checkIfPlayerExistsInArray() {
         try {
             currentPlayer = selectPlayer(playerID);
         } catch (IndexOutOfBoundsException e) {
@@ -45,45 +43,35 @@ public class Casino {
         }
         memberOfCasino = true;
     }
-
     public void askPlayerId() {
         playerID = Display.getIntPrompt("Please type in your Player ID");
     }
-
     public void tellPlayerId() {
         Display.showMessage("Your Player ID is " + (numberOfMembers - 1));
     }
-
-    public void runCasino() {
+    public void runCasino(){
         createPlayer();
         tellPlayerId();
         while (!memberOfCasino) {
             askPlayerId();
-            checkIfPlayerExists();
+            checkIfPlayerExistsInArray();
         }
-        if (checkAge(currentPlayer)) {
-            while (stillInCasino) {
+        currentPlayer.setPurse(Display.getDoublePrompt("How much would you like to donate to the Fellowship of Froilan?"));
+        while (stillInCasino) {
                 gameSelectionOption();
                 game = Display.getIntPrompt("What do you choose?");
-                gameSelection(game);
+                playerSelectsGame(game);
             }
         }
-        else{
-            Display.showMessage("Goodbye!");
-        }
-    }
-
-    public boolean checkAge(Player player) {
+    public void checkAgeOfPlayer(Player player) {
         if (player.getAge() < 21) {
             Display.showMessage("Sorry! Too young to play. Norodeen will escort you out.");
             Display.showMessage("But don't forget to come back in " + (21 - player.getAge()) + " years!");
-            return false;
+            exitCasino();
         } else {
             Display.showMessage("Lets Play!");
-            return true;
         }
     }
-
     public void gameSelectionOption() {
         Display.showMessage("Gameplay options: ");
         Display.showMessage("To play Black Jack: press 1");
@@ -91,9 +79,7 @@ public class Casino {
         Display.showMessage("To play Slots: press 3");
         Display.showMessage("To exit: press 4");
     }
-
-
-        public void gameSelection ( int game){
+    public void playerSelectsGame( int game){
             switch (game) {
                 case 1:
                     Blackjack blackjack = new Blackjack(currentPlayer);
@@ -106,18 +92,21 @@ public class Casino {
                 case 3:
                     Slots slots = new Slots();
                     slots.startGame(currentPlayer);
-                    break;
                 case 4:
+                    QuickWord quickWord = new QuickWord();
+                    quickWord.startGame(currentPlayer);
+                    break;
+                case 5:
                     exitCasino();
                     break;
                 default:
                     Display.showMessage("Sorry that is not an option.");
             }
-        }
-
-
-        public void exitCasino () {
+    }
+    public void exitCasino () {
             stillInCasino = false;
+            Display.showMessage("Goodbye!");
+            System.exit(0);
         }
     }
 
