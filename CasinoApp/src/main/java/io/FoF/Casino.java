@@ -77,7 +77,8 @@ public class Casino {
         Display.showMessage("To play Black Jack: press 1");
         Display.showMessage("To play Sic Bo: press 2");
         Display.showMessage("To play Slots: press 3");
-        Display.showMessage("To exit: press 4");
+        Display.showMessage("To play Quick Words: press 4");
+        Display.showMessage("To exit: press 5");
     }
     public void playerSelectsGame( int game){
             switch (game) {
