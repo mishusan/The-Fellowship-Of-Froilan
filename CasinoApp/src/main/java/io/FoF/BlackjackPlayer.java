@@ -10,11 +10,12 @@ public class BlackjackPlayer extends Player {
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int numberOfCardsInHand = 0;
 
+
     public BlackjackPlayer(Player player) {
         name = player.getName();
 
     }
-
+    
     public BlackjackPlayer(String name) {
         this.name = name;
     }
