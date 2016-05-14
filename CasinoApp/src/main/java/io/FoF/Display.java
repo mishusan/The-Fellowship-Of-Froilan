@@ -13,18 +13,47 @@ public class Display {
     static void welcome(String name) {
         System.out.println("Hello, " + name + " and WELCOME to the FoF casino.\nWe thank you for all your donations to the Fellowship.");
     }
-
-
-    static void displayPurse(double purse) {
-        System.out.println("Your purse is : " + purse);
+    static void showLogo(){
+        System.out.println(" /$$$$$$$$        /$$ /$$                                   /$$       /$$                \n" +
+                "| $$_____/       | $$| $$                                  | $$      |__/                \n" +
+                "| $$     /$$$$$$ | $$| $$  /$$$$$$  /$$  /$$  /$$  /$$$$$$$| $$$$$$$  /$$  /$$$$$$       \n" +
+                "| $$$$$ /$$__  $$| $$| $$ /$$__  $$| $$ | $$ | $$ /$$_____/| $$__  $$| $$ /$$__  $$      \n" +
+                "| $$__/| $$$$$$$$| $$| $$| $$  \\ $$| $$ | $$ | $$|  $$$$$$ | $$  \\ $$| $$| $$  \\ $$      \n" +
+                "| $$   | $$_____/| $$| $$| $$  | $$| $$ | $$ | $$ \\____  $$| $$  | $$| $$| $$  | $$      \n" +
+                "| $$   |  $$$$$$$| $$| $$|  $$$$$$/|  $$$$$/$$$$/ /$$$$$$$/| $$  | $$| $$| $$$$$$$/      \n" +
+                "|__/    \\_______/|__/|__/ \\______/  \\_____/\\___/ |_______/ |__/  |__/|__/| $$____/       \n" +
+                "                                                                         | $$            \n" +
+                "                                                                         | $$            \n" +
+                "                                                                         |__/            \n" +
+                "                                                /$$$$$$                                  \n" +
+                "                                               /$$__  $$                                 \n" +
+                "                                      /$$$$$$ | $$  \\__/                                 \n" +
+                "                                     /$$__  $$| $$$$                                     \n" +
+                "                                    | $$  \\ $$| $$_/                                     \n" +
+                "                                    | $$  | $$| $$                                       \n" +
+                "                                    |  $$$$$$/| $$                                       \n" +
+                "                                     \\______/ |__/                                       \n" +
+                "                                                                                         \n" +
+                "                                                                                         \n" +
+                "                                                                                         \n" +
+                "                   /$$$$$$$$                  /$$ /$$                                    \n" +
+                "                  | $$_____/                 |__/| $$                                    \n" +
+                "                  | $$     /$$$$$$   /$$$$$$  /$$| $$  /$$$$$$  /$$$$$$$                 \n" +
+                "                  | $$$$$ /$$__  $$ /$$__  $$| $$| $$ |____  $$| $$__  $$                \n" +
+                "                  | $$__/| $$  \\__/| $$  \\ $$| $$| $$  /$$$$$$$| $$  \\ $$                \n" +
+                "                  | $$   | $$      | $$  | $$| $$| $$ /$$__  $$| $$  | $$                \n" +
+                "                  | $$   | $$      |  $$$$$$/| $$| $$|  $$$$$$$| $$  | $$                \n" +
+                "                  |__/   |__/       \\______/ |__/|__/ \\_______/|__/  |__/           ");
     }
-
-    static void displayPot(double pot) {
-        System.out.println("The current pot is : " + pot);
-    }
-
-    static void displayBet(double bet) {
-        System.out.println("The bet is : " + bet);
+    static void showSword(){
+        System.out.println("  *            /  /________________________________________________\n" +
+                " (O)77777777777)  7                                                `~~--__\n" +
+                "8OO>>>>>>>>>>>>] <===   Fellowship of Froilan                                   __-\n" +
+                " (O)LLLLLLLLLLL)  L________________________________________________.--~~\n" +
+                "  *            \\  \\\n" +
+                "                \\__>\n" +
+                "\n" +
+                "\n");
     }
 
     /*Used to display the objects e.g Card ascii art or image(GUI)*/
@@ -59,6 +88,20 @@ public class Display {
     static void showMessage(double message) {
         System.out.println(message);
     }
+
+    static void pausedShowMessage(String messages[]) {
+        for (int i = 0; i < messages.length; i++) {
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+            }
+            System.out.println(messages[i]);
+        }
+    }
+    static void printImage(){
+
+    }
+
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++INPUT FROM USER+++++++++++++++++++++++++++++++++++++++++++++++*/
     /*This creates the scanner object and takes in the input of all  data types to be expected*/
@@ -116,16 +159,17 @@ public class Display {
                 if (input.hasNextLine()) {
                     input.nextLine();
                 }
-                return userInput;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println("I need an double please");
             }catch (InputMismatchException e){
                 System.out.println("I need an double please");
+            }catch(IndexOutOfBoundsException e){
+                System.out.println("That isn't one of the options");
             }
 
-
         }
-        //return userInput;
+        return userInput;
     }
 
 }
