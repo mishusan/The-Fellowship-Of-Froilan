@@ -156,9 +156,6 @@ public class Display {
         while (true) {
             try {
                 userInput = input.nextDouble();
-                if (input.hasNextLine()) {
-                    input.nextLine();
-                }
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("I need an double please");
@@ -166,6 +163,9 @@ public class Display {
                 System.out.println("I need an double please");
             }catch(IndexOutOfBoundsException e){
                 System.out.println("That isn't one of the options");
+            }
+            if (input.hasNextLine()) {
+                input.nextLine();
             }
 
         }
