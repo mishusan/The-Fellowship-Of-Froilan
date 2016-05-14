@@ -18,4 +18,5 @@ public class Card {
     public int getCardRank() {
         return cardRank;
     }
+
 }

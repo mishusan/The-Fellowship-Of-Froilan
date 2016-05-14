@@ -19,7 +19,7 @@ public class BlackjackTest {
         player = new Player();
         player.setName("Mike");
         blackjack = new Blackjack(player);
-        blackjackPlayer = new BlackjackPlayer("TestPlayer");
+        blackjackPlayer = new BlackjackPlayer(player);
         deck = new Deck();
         card = new Card(Suit.Clubs, 5);
     }

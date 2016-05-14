@@ -36,7 +36,7 @@ public class BlackjackPlayer extends Player {
             if (i == 0 && !showCard) {
                 cardInHand += "[Hidden]\n";
             } else {
-                cardInHand += Deck.faceValueToString(this.hand.get(i).getCardRank()) + " of " + this.hand.get(i).getCardSuit() + "\n";
+                cardInHand += Deck.faceValueToString(this.hand.get(i).getCardRank()) + " of " + this.hand.get(i).getCardSuit()+"\n";
             }
         }
         return cardInHand;
