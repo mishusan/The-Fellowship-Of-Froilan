@@ -105,7 +105,7 @@ public class Slots extends Game {
             Display.showMessage(player.getPurse());
             betPlaced = false;
             while (!betPlaced) {
-                double currentBet = Display.getDoublePrompt("How much you betting?");
+                double currentBet = Display.getDoublePrompt("How much are you betting?");
                 if (checkAmountInPurse(player, currentBet)) {
                     placeBet(player, currentBet);
                     removeMoneyFromPurse(player, currentBet);
