@@ -16,6 +16,8 @@ public class Display {
 
     static void welcome(String name) {
         System.out.println("Hello, " + name + " and WELCOME to the FoF casino.\nWe thank you for all your donations to the Fellowship.");
+        showLogo();
+        showSword();
     }
     static void showLogo(){
         System.out.println(" /$$$$$$$$        /$$ /$$                                   /$$       /$$                \n" +
@@ -52,7 +54,7 @@ public class Display {
     static void showSword(){
         System.out.println("  *            /  /________________________________________________\n" +
                 " (O)77777777777)  7                                                `~~--__\n" +
-                "8OO>>>>>>>>>>>>] <===   CASINO                                           __-\n" +
+                "8OO>>>>>>>>>>>>] <===   CASINO                                          __-\n" +
                 " (O)LLLLLLLLLLL)  L________________________________________________.--~~\n" +
                 "  *            \\  \\\n" +
                 "                \\__>\n" +
@@ -126,8 +128,6 @@ public class Display {
             try {
                 userInput = input.nextInt();
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("I need an integer please");
             }catch(InputMismatchException e){
                 System.out.println("I need an integer please");
             }catch(IndexOutOfBoundsException e){
@@ -155,7 +155,6 @@ public class Display {
                 System.out.println("I need an string please");
             }
         }
-        //return userInput;
     }
 
     static double getDoublePrompt(String promptMsg) {

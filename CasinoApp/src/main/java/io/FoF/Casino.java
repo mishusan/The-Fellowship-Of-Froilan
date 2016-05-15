@@ -73,7 +73,7 @@ public class Casino {
 
     public void checkAgeOfPlayer(Player player) {
         if (player.getAge() < 21) {
-            Display.showMessage("Sorry! Too young to play. Norodeen will escort you out.");
+            Display.showMessage("Sorry! Too young to play. Nurudeen will escort you out.");
             Display.showMessage("But don't forget to come back in " + (21 - player.getAge()) + " years!");
             exitCasino();
         } else {
@@ -87,7 +87,8 @@ public class Casino {
         Display.showMessage("To play Sic Bo: press 2");
         Display.showMessage("To play Slots: press 3");
         Display.showMessage("To play Quick Words: press 4");
-        Display.showMessage("To exit: press 5");
+        Display.showMessage("To play Roulette: press 5");
+        Display.showMessage("To exit: press 6");
     }
 
     public void playerSelectsGame( int game){
@@ -109,13 +110,11 @@ public class Casino {
                     quickWord.startGame(currentPlayer);
                     break;
                 case 5:
-                    exitCasino();
-                    break;
-
-                // ------------ DELETE THIS LATER
-                case 5:
                     Roulette roulette = new Roulette();
                     roulette.startGame(currentPlayer);
+                    break;
+                case 6:
+                    exitCasino();
                     break;
                 default:
                     Display.showMessage("Sorry that is not an option.");
