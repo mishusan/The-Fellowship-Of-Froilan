@@ -19,13 +19,13 @@ public class Blackjack extends Game {
             deck = new Deck();
             playerHasTurn = true;
             dealerHasTurn = true;
-            placeBet();
+            placeBet(player);
             shuffle();
             dealCards();
             displayInitialHandsAfterFirstDeal();
             handlePlayersTurn(blackjackPlayer);
             handleDealersTurn(dealer);
-            checkWhoWon();
+            checkToSeeIfPlayerWon();
             Display.showMessage("DEALER: " + dealer.getHandTotalValue() + " : " +"PLAYER: " + blackjackPlayer.getHandTotalValue());
             Display.showMessage("Purse after game: " + player.getPurse());
             display.showMessage("\nYou have " + player.getPurse() + " dollars left in your purse");
@@ -36,7 +36,7 @@ public class Blackjack extends Game {
 
     }
 
-    public void placeBet() {
+    public void placeBet(Player player) {
         pot = betInput.collectPlayerBetInputs(player);
     }
 
@@ -120,7 +120,7 @@ public class Blackjack extends Game {
         Display.showMessage("--New hand--: ");
     }
 
-    public void checkWhoWon(){
+    public void checkToSeeIfPlayerWon(){
         if(!blackJackChecker.checkPush(blackjackPlayer, dealer)){
             if(blackJackChecker.checkIfPlayerWon(blackjackPlayer, dealer)){
                 if(playerBlackJack){

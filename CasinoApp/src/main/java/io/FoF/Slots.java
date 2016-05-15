@@ -21,65 +21,27 @@ public class Slots extends Game {
     protected Tumbler tum2;
     protected Tumbler tum3;
 
-
-
     public Slots() {
         display.printSlotsPayline();
-        this.stopPlayingSlots = false;
-        this.typeOfSlotsChosen = false;
-        this.allTumblers = new ArrayList<Tumbler>();
-        this.pot = 0.0;
-        this.winnings = 0.0;
-        this.betPlaced = false;
-        this.numOfPaylines = 0;
-        this.tum1 = new Tumbler();
-        this.tum2 = new Tumbler();
-        this.tum3 = new Tumbler();
+        stopPlayingSlots = false;
+        typeOfSlotsChosen = false;
+        allTumblers = new ArrayList<>();
+        pot = 0.0;
+        winnings = 0.0;
+        betPlaced = false;
+        numOfPaylines = 0;
+        tum1 = new Tumbler();
+        tum2 = new Tumbler();
+        tum3 = new Tumbler();
 
-    }
-
-    public Boolean getStopPlayingSlots() {
-        return stopPlayingSlots;
-    }
-
-    public ArrayList<Tumbler> getAllTumblers() {
-        return allTumblers;
     }
 
     public Double getPot() {
         return pot;
     }
 
-    public Double getWinnings() {
-        return winnings;
-    }
-
-    public Boolean getBetPlaced() {
-        return betPlaced;
-    }
-
-    public int getNumOfPaylines() {
-        return numOfPaylines;
-    }
-
-    public void setStopPlayingSlots(Boolean stopPlayingSlots) {
-        this.stopPlayingSlots = stopPlayingSlots;
-    }
-
-    public void setAllTumblers(ArrayList<Tumbler> allTumblers) {
-        this.allTumblers = allTumblers;
-    }
-
     public void setPot(Double pot) {
         this.pot = pot;
-    }
-
-    public void setWinnings(Double winnings) {
-        this.winnings = winnings;
-    }
-
-    public void setBetPlaced(Boolean betPlaced) {
-        this.betPlaced = betPlaced;
     }
 
     public void setNumOfPaylines(int numOfPaylines) {
@@ -88,12 +50,14 @@ public class Slots extends Game {
 
 
     public void playGame(Player player) {
+        super.player = player;
+
         allTumblers.add(tum1);
         allTumblers.add(tum2);
         allTumblers.add(tum3);
 
         if(!typeOfSlotsChosen) {
-            int whichSlots = Display.getIntPrompt("Choose 5 Tumblers or 3 Tumblers");
+            int whichSlots = Display.getIntPrompt("Choose 5 Tumblers or 3 Tumblers: ");
             typeOfSlotsChosen = true;
             if (whichSlots == 3) {
                 Slots3 slots3 = new Slots3();
@@ -107,7 +71,7 @@ public class Slots extends Game {
             Display.showMessage(player.getPurse());
             betPlaced = false;
             while (!betPlaced) {
-                double currentBet = Display.getDoublePrompt("How much are you betting?");
+                double currentBet = Display.getDoublePrompt("How much are you betting?: ");
                 if (checkAmountInPurse(player, currentBet)) {
                     placeBet(player, currentBet);
                     removeMoneyFromPurse(player, currentBet);
@@ -128,7 +92,7 @@ public class Slots extends Game {
                     Display.showMessage("You won!! " + winnings);
                 }
                 addMoneytoPurse(player, winnings);
-                String choice = Display.getStringPrompt("Are you done playing?");
+                String choice = Display.getStringPrompt("Are you done playing (yes or no)?: ");
                 stopPlayingSlots = stopGame(choice);
             }
         }

@@ -22,9 +22,8 @@ public class Roulette extends Game{
         super.playGame(player);
     }
 
-    public void placeBet(Player player) {
+    public void placeBet() {
 
-        boolean doneBetting = false;
         int betTypeChoice = -1;
 
         numberBets = new int[37];
@@ -39,28 +38,15 @@ public class Roulette extends Game{
             switch (betTypeChoice) {
                 case 1:
                     numberBets = betInput.collectPlayerBetInputs(numberBets, player, BetInput.BetType.ROULETTENUMBERS , 0);
-
-                    for(int i = 0; i < numberBets.length; i++){
-                        System.out.println(numberBets[i]);
-                    }
                     break;
                 case 2:
                     rangeBets = betInput.collectPlayerBetInputs(rangeBets, player, BetInput.BetType.ROULETTERANGE , 0);
-                    for(int i = 0; i < rangeBets.length; i++){
-                        System.out.println(rangeBets[i]);
-                    }
                     break;
                 case 3:
                     columnBets = betInput.collectPlayerBetInputs(columnBets, player, BetInput.BetType.ROULETTECOLUMN , 1);
-                    for(int i = 0; i < columnBets.length; i++){
-                        System.out.println(columnBets[i]);
-                    }
                     break;
                 case 4:
                     rowBets = betInput.collectPlayerBetInputs(rowBets, player, BetInput.BetType.ROULETTEROW , 1);
-                    for(int i = 0; i < rowBets.length; i++){
-                        System.out.println(rowBets[i]);
-                    }
                     break;
             }
         }
@@ -76,7 +62,7 @@ public class Roulette extends Game{
         return "Roulette comes out to "+rouletteWheel.rouletteValue()+" "+rouletteWheel.rouletteColor();
     }
 
-    public void checkToSeeIfPlayerWon(Player player) {
+    public void checkToSeeIfPlayerWon() {
         int payoutTotal = 0;
         for(int i = 0; i < numberBets.length; i++){
             if(rouletteWheel.rouletteValue() == numberBets[i]){

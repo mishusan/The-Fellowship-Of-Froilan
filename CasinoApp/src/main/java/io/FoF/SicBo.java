@@ -83,7 +83,7 @@ public class SicBo extends Game {
         return "Dice rolls are: " + dice1.diceValue() + "  " + dice2.diceValue() + "  " + dice3.diceValue();
     }
 
-    public void checkToSeeIfPlayerWon(Player player) {
+    public void checkToSeeIfPlayerWon() {
         int payoutTotal = 0;
         payoutTotal += sicBoBetPayout.returnPayoutForTriples(dicesValues, tripleBets);
         payoutTotal += sicBoBetPayout.returnPayoutForDoubles(dicesValues, doubleBets);

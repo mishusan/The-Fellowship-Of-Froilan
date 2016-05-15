@@ -14,10 +14,10 @@ public abstract class Game {
     void playGame(Player player) {
         this.player = player;
         while (stillPlaying) {
-            placeBet(player);
+            placeBet();
             shuffle();
             display.showMessage("\n" + sendDisplayResults() + "\n");
-            checkToSeeIfPlayerWon(player);
+            checkToSeeIfPlayerWon();
             display.showMessage("\nYou have " + player.getPurse() + " dollars left in your purse");
 
             if (display.getStringPrompt("Are you done playing?(yes or no): ").equals("yes")) {
@@ -26,16 +26,16 @@ public abstract class Game {
         }
     }
 
-    abstract void placeBet(Player player);
+    void placeBet(){}
 
-    abstract void shuffle();
-
-
-    abstract String sendDisplayResults();
+    void shuffle(){}
 
 
+    String sendDisplayResults(){return  "";}
 
-    abstract void checkToSeeIfPlayerWon(Player player);
+
+
+    void checkToSeeIfPlayerWon(){}
 
 
 
