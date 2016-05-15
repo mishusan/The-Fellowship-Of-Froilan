@@ -110,6 +110,12 @@ public class Casino {
                 case 4:
                     exitCasino();
                     break;
+
+                // ------------ DELETE THIS LATER
+                case 5:
+                    Roulette roulette = new Roulette();
+                    roulette.startGame(currentPlayer);
+                    break;
                 default:
                     Display.showMessage("Sorry that is not an option.");
             }

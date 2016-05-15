@@ -8,16 +8,28 @@ public class Game {
     protected double pot;
     protected Display display = new Display();
     protected boolean gameOver = false;
+    protected boolean stillPlaying = true;
 
     void startGame(Player player) {
+        while (stillPlaying) {
+            placeBet(player);
+            shuffle();
+            display.showMessage("\n" + sendDisplayResults() + "\n");
+            checkToSeeIfPlayerWon(player);
+            display.showMessage("\nYou have " + player.getPurse() + " dollars left in your purse");
+
+            if (display.getStringPrompt("Are you done playing?(yes or no): ").equals("yes")) {
+                stillPlaying = false;
+            }
+        }
     }
 
-    ;
 
-    void placeBet() {
+
+    void placeBet(Player player) {
     }
 
-    ;
+
 
     public Boolean checkAmountInPurse(Player player, double betAmount) {
         boolean checkEnoughMoney = false;
@@ -38,7 +50,7 @@ public class Game {
 
     ;
 
-    void checkToSeeIfPlayerWon() {
+    void checkToSeeIfPlayerWon(Player player) {
     }
 
     ;
@@ -59,6 +71,6 @@ public class Game {
     void stopGame() {
     }
 
-    ;
+
 
 }
