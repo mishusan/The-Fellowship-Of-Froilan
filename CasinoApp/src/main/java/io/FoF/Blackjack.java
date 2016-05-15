@@ -104,9 +104,10 @@ public class Blackjack extends CardGame {
     }
 
     public void checkIfDealersHandIsBelow17AndMustHit() {
-        if (dealer.getHandTotalValue() < 17)
+        if (dealer.getHandTotalValue() < 17) {
             Display.showMessage("Dealer Hits... \n" + dealer.printHand(true));
-        dealer.addCardToHand(deck.dealNextCard());
+            dealer.addCardToHand(deck.dealNextCard());
+        }
     }
 
     public void checkIfDealerBusts() {
