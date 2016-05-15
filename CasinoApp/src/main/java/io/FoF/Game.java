@@ -3,14 +3,16 @@ package io.FoF;
 /**
  * Created by minlee on 5/11/16.
  */
-public class Game {
+public abstract class Game {
 
-    protected double pot;
+    protected int pot;
     protected Display display = new Display();
-    protected boolean gameOver = false;
     protected boolean stillPlaying = true;
+    protected BetInput betInput = new BetInput();
+    protected Player player = new Player();
 
-    void startGame(Player player) {
+    void playGame(Player player) {
+        this.player = player;
         while (stillPlaying) {
             placeBet(player);
             shuffle();
@@ -24,53 +26,28 @@ public class Game {
         }
     }
 
+    abstract void placeBet(Player player);
+
+    abstract void shuffle();
 
 
-    void placeBet(Player player) {
-    }
+    abstract String sendDisplayResults();
 
 
 
-    public Boolean checkAmountInPurse(Player player, double betAmount) {
-        boolean checkEnoughMoney = false;
-        if (betAmount <= player.getPurse()) {
-            checkEnoughMoney = true;
-        }
-        return checkEnoughMoney;
-    }
+    abstract void checkToSeeIfPlayerWon(Player player);
 
-    void shuffle() {
-    }
 
-    ;
-
-    String sendDisplayResults() {
-        return "";
-    }
-
-    ;
-
-    void checkToSeeIfPlayerWon(Player player) {
-    }
-
-    ;
 
     public void MoneyFromPurse(Player player, double pot) {
         player.removeMoneyFromPurse(pot);
         display.showMessage("Removed " + pot + " from current player's purse");
-        //System.out.println("Removed "+pot+" from current player's purse");
     }
 
     public void MoneyToPurse(Player player, double pot) {
         player.addMoneyToPurse(pot);
         display.showMessage("Added " + pot + " from current player's purse");
 
-        //System.out.println("Added "+pot+" to current player's purse");
     }
-
-    void stopGame() {
-    }
-
-
 
 }

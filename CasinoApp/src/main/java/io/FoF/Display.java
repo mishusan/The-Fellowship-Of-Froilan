@@ -15,7 +15,9 @@ public class Display {
 
 
     static void welcome(String name) {
-        System.out.println("Hello, " + name + " and WELCOME to the FoF casino.\nWe thank you for all your donations to the Fellowship.");
+        System.out.println("\nHello, " + name + " and WELCOME to the FoF casino.\nWe thank you for all your donations to the Fellowship.\n");
+        showLogo();
+        showSword();
     }
     static void showLogo(){
         System.out.println(" /$$$$$$$$        /$$ /$$                                   /$$       /$$                \n" +
@@ -84,7 +86,7 @@ public class Display {
         }
     }
     public void printSicBoTable(){
-        System.out.println("Please refer to the new window for betting instructions");
+        System.out.println("\nPlease refer to the new window for betting instructions");
         JFrame frame = new JFrame();
         ImageIcon sicBoTable = new ImageIcon("src/SicBoTable.png");
         frame.add(new JLabel(sicBoTable));
@@ -93,7 +95,7 @@ public class Display {
     }
 
     public void printRouletteTable(){
-        System.out.println("Please refer to the new window for betting instructions");
+        System.out.println("\nPlease refer to the new window for betting instructions");
         JFrame frame = new JFrame();
         ImageIcon rouletteTable = new ImageIcon("src/RouletteTable.jpg");
         frame.add(new JLabel(rouletteTable));
@@ -102,7 +104,7 @@ public class Display {
     }
 
     public void printSlotsPayline(){
-        System.out.println("Please refer to the new window for betting instructions");
+        System.out.println("\nPlease refer to the new window for betting instructions");
         JFrame frame = new JFrame();
         ImageIcon slotsPayline = new ImageIcon("src/SlotsPayline.gif");
         frame.add(new JLabel(slotsPayline));

@@ -10,7 +10,6 @@ public class BetInput {
     }
 
     Display display = new Display();
-    Game game = new Game();
 
     public String getBetQuestion(BetType betType){
         String betQuestion = "";
@@ -74,7 +73,7 @@ public class BetInput {
         int currentBetAmount;
         boolean madeCorrectBet = true;
         currentBetAmount = display.getIntPrompt("How much do you want to bet?: ");
-        if (game.checkAmountInPurse(player, currentBetAmount)) {
+        if (checkAmountInPurse(player, currentBetAmount)) {
             betSpecificChoice = display.getIntPrompt(getBetQuestion(betType));
             if((betSpecificChoice >= differential) && (betSpecificChoice <= bets.length+differential-1)){
                 bets[betSpecificChoice-differential] += currentBetAmount;
@@ -92,14 +91,22 @@ public class BetInput {
 
     public int collectPlayerBetInputs(Player player) {
         int bet = 0;
-        int currentBetAmount;
-        currentBetAmount = display.getIntPrompt("How much do you want to bet?: ");
-        if (game.checkAmountInPurse(player, currentBetAmount)) {
+        double currentBetAmount;
+        currentBetAmount = display.getDoublePrompt("How much do you want to bet?: ");
+        if (checkAmountInPurse(player, currentBetAmount)) {
             bet += currentBetAmount;
             player.removeMoneyFromPurse(currentBetAmount);
         } else {
             display.showMessage("You do not have enough money, bet again");
         }
         return bet;
+    }
+
+    public Boolean checkAmountInPurse(Player player, double betAmount) {
+        boolean checkEnoughMoney = false;
+        if (betAmount <= player.getPurse()) {
+            checkEnoughMoney = true;
+        }
+        return checkEnoughMoney;
     }
 }

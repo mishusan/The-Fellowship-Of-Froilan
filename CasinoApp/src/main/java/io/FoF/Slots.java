@@ -24,7 +24,7 @@ public class Slots extends Game {
 
 
     public Slots() {
-
+        display.printSlotsPayline();
         this.stopPlayingSlots = false;
         this.typeOfSlotsChosen = false;
         this.allTumblers = new ArrayList<Tumbler>();
@@ -87,7 +87,7 @@ public class Slots extends Game {
     }
 
 
-    public void startGame(Player player) {
+    public void playGame(Player player) {
         allTumblers.add(tum1);
         allTumblers.add(tum2);
         allTumblers.add(tum3);
@@ -97,7 +97,7 @@ public class Slots extends Game {
             typeOfSlotsChosen = true;
             if (whichSlots == 3) {
                 Slots3 slots3 = new Slots3();
-                slots3.startGame(player);
+                slots3.playGame(player);
 
             }
         }

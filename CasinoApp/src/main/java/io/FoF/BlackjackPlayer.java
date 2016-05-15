@@ -3,17 +3,15 @@ package io.FoF;
 import java.util.ArrayList;
 
 
-public class BlackjackPlayer extends Player {
+public class BlackjackPlayer{
 
     private String name;
-    double amountPlayerBet;
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int numberOfCardsInHand = 0;
 
 
     public BlackjackPlayer(Player player) {
         name = player.getName();
-
     }
     
     public BlackjackPlayer(String name) {

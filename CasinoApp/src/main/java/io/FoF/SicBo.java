@@ -19,9 +19,10 @@ public class SicBo extends Game {
     SicBoBetPayout sicBoBetPayout = new SicBoBetPayout();
     BetInput betInput = new BetInput();
 
-    public void startGame(Player player) {
+    public void playGame(Player player) {
+        display.printSicBoTable();
         dicesValues = new int[3];
-        super.startGame(player);
+        super.playGame(player);
     }
 
     public void placeBet(Player player) {

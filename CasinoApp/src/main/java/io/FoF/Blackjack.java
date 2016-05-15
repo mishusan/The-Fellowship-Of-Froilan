@@ -1,37 +1,46 @@
 package io.FoF;
 
-public class Blackjack extends CardGame {
+public class Blackjack extends Game {
 
-    BlackjackPlayer blackjackPlayer;
+    private BlackjackPlayer blackjackPlayer, dealer;
+    BlackJackChecker blackJackChecker = new BlackJackChecker();
+    boolean playerHasTurn;
+    boolean dealerHasTurn;
+    private Deck deck;
+    private Player player;
+    private boolean playerBlackJack = false;
 
-    public Blackjack(Player player) {
+    public void playGame(Player player) {
+        this.player = player;
 
-        blackjackPlayer = new BlackjackPlayer(player);
+        while (stillPlaying){
+            dealer = new BlackjackPlayer("Dealer");
+            blackjackPlayer = new BlackjackPlayer(player);
+            deck = new Deck();
+            playerHasTurn = true;
+            dealerHasTurn = true;
+            placeBet();
+            shuffle();
+            dealCards();
+            displayInitialHandsAfterFirstDeal();
+            handlePlayersTurn(blackjackPlayer);
+            handleDealersTurn(dealer);
+            checkWhoWon();
+            Display.showMessage("DEALER: " + dealer.getHandTotalValue() + " : " +"PLAYER: " + blackjackPlayer.getHandTotalValue());
+            Display.showMessage("Purse after game: " + player.getPurse());
+            display.showMessage("\nYou have " + player.getPurse() + " dollars left in your purse");
+            if (display.getStringPrompt("\nAre you done playing?(yes or no): ").equals("yes")) {
+                stillPlaying = false;
+            }
+        }
+
     }
 
-    BlackjackPlayer dealer = new BlackjackPlayer("Dealer");
-    boolean playerHasTurn = true;
-    boolean dealerHasTurn = true;
-
-    public void startGame() {
-        Display.showMessage("Purse before game: " + blackjackPlayer.getPurse());
-        getBetPlayerWantsToPlace();
-        shuffleCardsTwice();
-        dealCards();
-        displayInitialHandsAfterFirstDeal();
-        handlePlayersTurn();
-        handleDealersTurn();
-        checkWhoWonTheHand();
-        Display.showMessage("DEALER: " + dealer.getHandTotalValue() + " : " +"PLAYER: " + blackjackPlayer.getHandTotalValue());
-        Display.showMessage("Purse after game: " + blackjackPlayer.getPurse());
+    public void placeBet() {
+        pot = betInput.collectPlayerBetInputs(player);
     }
 
-    public void getBetPlayerWantsToPlace() {
-        blackjackPlayer.amountPlayerBet = Display.getDoublePrompt("\nHow much would you like to bet on this hand? ");
-    }
-
-    public void shuffleCardsTwice() {
-        deck.shuffle();
+    public void shuffle() {
         deck.shuffle();
     }
 
@@ -48,38 +57,55 @@ public class Blackjack extends CardGame {
         Display.showMessage(dealer.printHand(false));
     }
 
-    public void handlePlayersTurn() {
+    public void handlePlayersTurn(BlackjackPlayer blackjackPlayer) {
+        if(blackJackChecker.checkIfPlayerHasBlackjack(blackjackPlayer)){
+            playerHasTurn = false;
+        }
         while (playerHasTurn) {
-            hitOrStayHandler(askPlayerIfTheyWantToHitOrStay());
+            hitOrStayHandler(blackjackPlayer);
         }
     }
 
-    public void handleDealersTurn() {
+    public void handleDealersTurn(BlackjackPlayer dealer) {
+        if(blackJackChecker.checkIfPlayerHasBlackjack(dealer)){
+            Display.showMessage(dealer.printHand(true));
+            playerBlackJack = true;
+            dealerHasTurn = false;
+        }
         while (dealerHasTurn) {
-            followBlackjackRulesForDealer();
+            if(blackJackChecker.checkIfBusts(dealer)){
+                dealerHasTurn = false;
+            }
+            if(blackJackChecker.checkIfHandIsBelow17(dealer)){
+                addCardToHand(dealer);
+            }
+            else{
+                Display.showMessage("Dealer has above 16. Dealer stays");
+                Display.showMessage(dealer.printHand(true));
+                dealerHasTurn = false;
+            }
+            if(blackJackChecker.checkIfHandEquals21(dealer)){
+                dealerHasTurn = false;
+            }
         }
     }
 
-    public void checkWhoWonTheHand() {
-        checkIfDealerWon();
-        checkIfPlayerWon();
-        checkIfItIsATie();
-    }
-
-    public String askPlayerIfTheyWantToHitOrStay() {
-        return Display.getStringPrompt(blackjackPlayer.getName() + " Hit or Stay: Enter H or S\n");
-    }
-
-    public void hitOrStayHandler(String playerHitOrStay) {
+    public void hitOrStayHandler(BlackjackPlayer blackjackPlayer) {
+        String playerHitOrStay = Display.getStringPrompt(blackjackPlayer.getName() + " Hit or Stay: Enter H or S\n");
         switch (playerHitOrStay.toLowerCase()) {
             case "h":
-                addCardToPlayersHand();
+                addCardToHand(blackjackPlayer);
                 Display.showMessage(blackjackPlayer.printHand(true));
-                checkIfPlayerHandEquals21EndingTheirTurn();
-                checkIfPlayerBustsEndingTheirTurn();
+                if(blackJackChecker.checkIfHandEquals21(blackjackPlayer)){
+                    playerHasTurn = false;
+                }
+                if(blackJackChecker.checkIfBusts(blackjackPlayer)){
+                    playerHasTurn = false;
+                    dealerHasTurn = false;
+                }
                 break;
             case "s":
-                playerChoosesToStayEndingTheirTurn();
+                playerHasTurn = false;
                 break;
             default:
                 Display.showMessage("Error - You did not enter an H or an S: Please Enter an H for Hit or S for Stay");
@@ -87,106 +113,26 @@ public class Blackjack extends CardGame {
         }
     }
 
-    public void addCardToPlayersHand() {
+    public void addCardToHand(BlackjackPlayer blackjackPlayer) {
         blackjackPlayer.addCardToHand(deck.dealNextCard());
-        Display.showMessage("--Your new hand--: ");
+        Display.showMessage(dealer.printHand(true));
+
+        Display.showMessage("--New hand--: ");
     }
 
-    public void followBlackjackRulesForDealer() {
-        checkIfDealerHas21();
-        checkIfDealersHandIsBelow17AndMustHit();
-        checkIfDealerBusts();
-        checkIfDealersHandIsAbove16ButLessThan21AndHasToStay();
-    }
-
-    public void checkIfDealerHas21(){
-        if(dealer.getHandTotalValue() == 21)
-            dealerHasTurn = false;
-    }
-
-    public void checkIfDealersHandIsBelow17AndMustHit() {
-        if (dealer.getHandTotalValue() < 17) {
-            Display.showMessage("Dealer Hits... \n" + dealer.printHand(true));
-            dealer.addCardToHand(deck.dealNextCard());
+    public void checkWhoWon(){
+        if(!blackJackChecker.checkPush(blackjackPlayer, dealer)){
+            if(blackJackChecker.checkIfPlayerWon(blackjackPlayer, dealer)){
+                if(playerBlackJack){
+                    player.addMoneyToPurse(pot * 2.5);
+                }
+                else{
+                    player.addMoneyToPurse(pot * 2);
+                }
+            }
+            else{
+                display.showMessage("DEALER WINS!!!");
+            }
         }
-    }
-
-    public void checkIfDealerBusts() {
-        if (isDealerHandOver21()) {
-            Display.showMessage("BUST\n" + blackjackPlayer.getName() + " has WON!, dealer busts\n" + dealer.printHand(true));
-            dealerHasTurn = false;
-        }
-    }
-
-    public void checkIfDealersHandIsAbove16ButLessThan21AndHasToStay() {
-        if (dealer.getHandTotalValue() > 16 && (!isDealerHandOver21())) {
-            Display.showMessage("Dealer has above 16. Dealer stays");
-            dealerHasTurn = false;
-        }
-    }
-
-    public void checkIfDealerWon() {
-        if ((dealer.getHandTotalValue() > blackjackPlayer.getHandTotalValue()) && (!isDealerHandOver21())) {
-            Display.showMessage("Dealer Wins\n");
-            Display.showMessage(dealer.printHand(true));
-            blackjackPlayer.removeMoneyFromPurse(blackjackPlayer.amountPlayerBet);
-        }
-    }
-
-    public void checkIfPlayerWon() {
-        if ((dealer.getHandTotalValue() < blackjackPlayer.getHandTotalValue()) && (!isPlayerHandOver21())) {
-            Display.showMessage("YOU WIN!!\n");
-            Display.showMessage(dealer.printHand(true));
-            blackjackPlayer.addMoneyToPurse(blackjackPlayer.amountPlayerBet * 2);
-        }
-    }
-
-    public void checkIfItIsATie() {
-        if (dealer.getHandTotalValue() == blackjackPlayer.getHandTotalValue())
-            Display.showMessage("Tie...It is a push\n");
-    }
-
-    public void checkIfPlayerHandEquals21EndingTheirTurn() {
-        if (blackjackPlayer.getHandTotalValue() == 21) {
-            Display.showMessage("**Player has 21**");
-            playerHasTurn = false;
-        }
-    }
-
-    public void checkIfPlayerBustsEndingTheirTurn() {
-        if (isPlayerHandOver21()) {
-            showPlayerBustsMessage();
-            endBlackjackGame();
-        }
-    }
-
-    public void showPlayerBustsMessage() {
-        Display.showMessage("BUST");
-        Display.showMessage(dealer.getName() + " has WON!, you bust");
-    }
-
-
-    public boolean isDealerHandOver21() {
-        if (dealer.getHandTotalValue() > 21)
-            return true;
-        else
-            return false;
-    }
-
-    public boolean isPlayerHandOver21() {
-        if (blackjackPlayer.getHandTotalValue() > 21)
-            return true;
-        else
-            return false;
-    }
-
-    public void playerChoosesToStayEndingTheirTurn() {
-        Display.showMessage(blackjackPlayer.getName() + " stays.\n");
-        playerHasTurn = false;
-    }
-
-    public void endBlackjackGame() {
-        dealerHasTurn = false;
-        playerHasTurn = false;
     }
 }

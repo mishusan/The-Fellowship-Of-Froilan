@@ -18,7 +18,7 @@ public class BlackjackTest {
     public void setup() {
         player = new Player();
         player.setName("Mike");
-        blackjack = new Blackjack(player);
+        blackjack = new Blackjack();
         blackjackPlayer = new BlackjackPlayer(player);
         deck = new Deck();
         card = new Card(Suit.Clubs, 5, "");

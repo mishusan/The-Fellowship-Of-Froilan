@@ -15,6 +15,7 @@ public class QuickWord extends Game implements Runnable {
     Date date;
     double bet;
     static int counter;
+    BetInput betInput = new BetInput();
 
     public QuickWord() {
         threadQuickWord = "newQuickWordThread";
@@ -64,9 +65,9 @@ public class QuickWord extends Game implements Runnable {
         }
     }
 
-    public void startGame(Player player) {
+    public void playGame(Player player) {
         bet = Display.getDoublePrompt("How much are you betting?");
-        if (checkAmountInPurse(player, bet)) {
+        if (betInput.checkAmountInPurse(player, bet)) {
             MoneyFromPurse(player, bet);
             pot += bet;
         } else {

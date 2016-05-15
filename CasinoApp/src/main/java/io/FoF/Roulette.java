@@ -16,9 +16,10 @@ public class Roulette extends Game{
     RoulettePayoutCalculator roulettePayoutCalculator = new RoulettePayoutCalculator();
     BetInput betInput = new BetInput();
 
-    public void startGame(Player player) {
+    public void playGame(Player player) {
+        display.printRouletteTable();
         rouletteWheel = new RouletteWheel();
-        super.startGame(player);
+        super.playGame(player);
     }
 
     public void placeBet(Player player) {
