@@ -22,6 +22,7 @@ public class Blackjack extends CardGame {
         handlePlayersTurn();
         handleDealersTurn();
         checkWhoWonTheHand();
+        Display.showMessage("DEALER: " + dealer.getHandTotalValue() + " : " +"PLAYER: " + blackjackPlayer.getHandTotalValue());
         Display.showMessage("Purse after game: " + blackjackPlayer.getPurse());
     }
 
@@ -146,8 +147,10 @@ public class Blackjack extends CardGame {
     }
 
     public void checkIfPlayerHandEquals21EndingTheirTurn() {
-        if (blackjackPlayer.getHandTotalValue() == 21)
+        if (blackjackPlayer.getHandTotalValue() == 21) {
+            Display.showMessage("**Player has 21**");
             playerHasTurn = false;
+        }
     }
 
     public void checkIfPlayerBustsEndingTheirTurn() {

@@ -31,13 +31,12 @@ public class BlackjackPlayer extends Player {
 
     public String printHand(boolean showCard) {
         String cardInHand = "";
-        //Display show message below
         System.out.printf("%s's cards:\n", this.name);
         for (int i = 0; i < numberOfCardsInHand; i++) {
             if (i == 0 && !showCard) {
                 cardInHand += "[Hidden]\n";
             } else {
-                cardInHand += Deck.faceValueToString(this.hand.get(i).getCardRank()) + " of " + this.hand.get(i).getCardSuit()+"\n";
+                cardInHand += Deck.faceValueToString(this.hand.get(i).getCardRank()) + " of " + this.hand.get(i).getCardSuit()+"\n" + this.hand.get(i).getAsciiCard() + "\n";
             }
         }
         return cardInHand;
@@ -53,7 +52,7 @@ public class BlackjackPlayer extends Player {
                 numberOfAces++;
                 handTotal += 11;
             }
-            if (rank > 10 && rank < 14) {
+            if (rank >= 10 && rank < 14) {
                 handTotal += 10;
             }
             if (rank < 10) {
