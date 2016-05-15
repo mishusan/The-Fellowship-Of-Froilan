@@ -98,7 +98,7 @@ public class Slots extends Game {
             if (whichSlots == 3) {
                 Slots3 slots3 = new Slots3();
                 slots3.startGame(player);
-
+                stopPlayingSlots = true;
             }
         }
 
