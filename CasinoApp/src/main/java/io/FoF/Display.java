@@ -1,7 +1,11 @@
 package io.FoF;
 
 import org.omg.CORBA.Object;
+import org.omg.CORBA.portable.InputStream;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -48,7 +52,7 @@ public class Display {
     static void showSword(){
         System.out.println("  *            /  /________________________________________________\n" +
                 " (O)77777777777)  7                                                `~~--__\n" +
-                "8OO>>>>>>>>>>>>] <===   Fellowship of Froilan                                   __-\n" +
+                "8OO>>>>>>>>>>>>] <===   CASINO                                           __-\n" +
                 " (O)LLLLLLLLLLL)  L________________________________________________.--~~\n" +
                 "  *            \\  \\\n" +
                 "                \\__>\n" +
@@ -56,25 +60,6 @@ public class Display {
                 "\n");
     }
 
-    /*Used to display the objects e.g Card ascii art or image(GUI)*/
-    /*
-    static void showCard(Card card){
-        System.out.println(card.image);
-    }
-
-    static void showDie(Dice die){
-        System.out.println(die.face);
-    }
-
-
-    static void showTable(Object table){
-        System.out.println(table.top);
-    }
-
-
-    static void showSlot(Object slot){
-        System.out.println(slot.front);
-    }
 
     /*Used to output any non variable Strings/Integers/Doubles*/
     static void showMessage(String message) {
@@ -98,8 +83,31 @@ public class Display {
             System.out.println(messages[i]);
         }
     }
-    static void printImage(){
+    public void printSicBoTable(){
+        System.out.println("Please refer to the new window for betting instructions");
+        JFrame frame = new JFrame();
+        ImageIcon sicBoTable = new ImageIcon("src/SicBoTable.png");
+        frame.add(new JLabel(sicBoTable));
+        frame.pack();
+        frame.setVisible(true);
+    }
 
+    public void printRouletteTable(){
+        System.out.println("Please refer to the new window for betting instructions");
+        JFrame frame = new JFrame();
+        ImageIcon rouletteTable = new ImageIcon("src/RouletteTable.jpg");
+        frame.add(new JLabel(rouletteTable));
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public void printSlotsPayline(){
+        System.out.println("Please refer to the new window for betting instructions");
+        JFrame frame = new JFrame();
+        ImageIcon slotsPayline = new ImageIcon("src/SlotsPayline.gif");
+        frame.add(new JLabel(slotsPayline));
+        frame.pack();
+        frame.setVisible(true);
     }
 
 
@@ -156,18 +164,15 @@ public class Display {
         while (true) {
             try {
                 userInput = input.nextDouble();
-                if (input.hasNextLine()) {
-                    input.nextLine();
-                }
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("I need an double please");
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("I need an double please");
             }catch(IndexOutOfBoundsException e){
                 System.out.println("That isn't one of the options");
             }
-
+            if (input.hasNextLine()) {
+                input.nextLine();
+            }
         }
         return userInput;
     }
