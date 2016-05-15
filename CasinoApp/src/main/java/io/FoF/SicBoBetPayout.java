@@ -25,22 +25,22 @@ public class SicBoBetPayout {
         if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnyTripleWinnings(tripleBets[0]);
         }
-        if (sicBoCheckForDiceTriples.checkForAnyTriple1s(diceValues)) {
+        if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues, 1)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[1]);
         }
-        if (sicBoCheckForDiceTriples.checkForAnyTriple2s(diceValues)) {
+        if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues, 2)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[2]);
         }
-        if (sicBoCheckForDiceTriples.checkForAnyTriple3s(diceValues)) {
+        if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues, 3)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[3]);
         }
-        if (sicBoCheckForDiceTriples.checkForAnyTriple4s(diceValues)) {
+        if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues, 4)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[4]);
         }
-        if (sicBoCheckForDiceTriples.checkForAnyTriple5s(diceValues)) {
+        if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues, 5)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[5]);
         }
-        if (sicBoCheckForDiceTriples.checkForAnyTriple6s(diceValues)) {
+        if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues, 6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificTripleWinnings(tripleBets[6]);
         }
         return payout;
@@ -48,22 +48,22 @@ public class SicBoBetPayout {
 
     public int returnPayoutForDoubles(int[] diceValues, int[] doubleBet) {
         int payout = 0;
-        if (sicBoCheckForDiceDoubles.checkForDouble1s(diceValues)) {
+        if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,1)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificDoubleWinnings(doubleBet[0]);
         }
-        if (sicBoCheckForDiceDoubles.checkForDouble2s(diceValues)) {
+        if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,2)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificDoubleWinnings(doubleBet[1]);
         }
-        if (sicBoCheckForDiceDoubles.checkForDouble3s(diceValues)) {
+        if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,3)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificDoubleWinnings(doubleBet[2]);
         }
-        if (sicBoCheckForDiceDoubles.checkForDouble4s(diceValues)) {
+        if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,4)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificDoubleWinnings(doubleBet[3]);
         }
-        if (sicBoCheckForDiceDoubles.checkForDouble5s(diceValues)) {
+        if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,5)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificDoubleWinnings(doubleBet[4]);
         }
-        if (sicBoCheckForDiceDoubles.checkForDouble6s(diceValues)) {
+        if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateSpecificDoubleWinnings(doubleBet[5]);
         }
         return payout;
@@ -72,60 +72,60 @@ public class SicBoBetPayout {
     public int returnPayoutForSingles(int[] diceValues, int[] singleBets) {
         int payout = 0;
         int numberOfSingleOccurence;
-        if (sicBoCheckForDiceSingles.checkForSingle1s(diceValues)) {
-            if (sicBoCheckForDiceTriples.checkForAnyTriple1s(diceValues)) {
+        if (sicBoCheckForDiceSingles.checkForSingles(diceValues,1)) {
+            if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues,1)) {
                 numberOfSingleOccurence = 3;
-            } else if (sicBoCheckForDiceDoubles.checkForDouble1s(diceValues)) {
+            } else if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,1)) {
                 numberOfSingleOccurence = 2;
             } else {
                 numberOfSingleOccurence = 1;
             }
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySingleDieWinning(singleBets[0], numberOfSingleOccurence);
         }
-        if (sicBoCheckForDiceSingles.checkForSingle2s(diceValues)) {
-            if (sicBoCheckForDiceTriples.checkForAnyTriple2s(diceValues)) {
+        if (sicBoCheckForDiceSingles.checkForSingles(diceValues,2)) {
+            if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues,2)) {
                 numberOfSingleOccurence = 3;
-            } else if (sicBoCheckForDiceDoubles.checkForDouble2s(diceValues)) {
+            } else if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,2)) {
                 numberOfSingleOccurence = 2;
             } else {
                 numberOfSingleOccurence = 1;
             }
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySingleDieWinning(singleBets[1], numberOfSingleOccurence);
         }
-        if (sicBoCheckForDiceSingles.checkForSingle3s(diceValues)) {
-            if (sicBoCheckForDiceTriples.checkForAnyTriple3s(diceValues)) {
+        if (sicBoCheckForDiceSingles.checkForSingles(diceValues,3)) {
+            if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues,3)) {
                 numberOfSingleOccurence = 3;
-            } else if (sicBoCheckForDiceDoubles.checkForDouble3s(diceValues)) {
+            } else if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,3)) {
                 numberOfSingleOccurence = 2;
             } else {
                 numberOfSingleOccurence = 1;
             }
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySingleDieWinning(singleBets[2], numberOfSingleOccurence);
         }
-        if (sicBoCheckForDiceSingles.checkForSingle4s(diceValues)) {
-            if (sicBoCheckForDiceTriples.checkForAnyTriple4s(diceValues)) {
+        if (sicBoCheckForDiceSingles.checkForSingles(diceValues,4)) {
+            if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues,4)) {
                 numberOfSingleOccurence = 3;
-            } else if (sicBoCheckForDiceDoubles.checkForDouble4s(diceValues)) {
+            } else if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,4)) {
                 numberOfSingleOccurence = 2;
             } else {
                 numberOfSingleOccurence = 1;
             }
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySingleDieWinning(singleBets[3], numberOfSingleOccurence);
         }
-        if (sicBoCheckForDiceSingles.checkForSingle5s(diceValues)) {
-            if (sicBoCheckForDiceTriples.checkForAnyTriple5s(diceValues)) {
+        if (sicBoCheckForDiceSingles.checkForSingles(diceValues,5)) {
+            if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues,5)) {
                 numberOfSingleOccurence = 3;
-            } else if (sicBoCheckForDiceDoubles.checkForDouble5s(diceValues)) {
+            } else if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,5)) {
                 numberOfSingleOccurence = 2;
             } else {
                 numberOfSingleOccurence = 1;
             }
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySingleDieWinning(singleBets[4], numberOfSingleOccurence);
         }
-        if (sicBoCheckForDiceSingles.checkForSingle6s(diceValues)) {
-            if (sicBoCheckForDiceTriples.checkForAnyTriple6s(diceValues)) {
+        if (sicBoCheckForDiceSingles.checkForSingles(diceValues,6)) {
+            if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues,6)) {
                 numberOfSingleOccurence = 3;
-            } else if (sicBoCheckForDiceDoubles.checkForDouble6s(diceValues)) {
+            } else if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,6)) {
                 numberOfSingleOccurence = 2;
             } else {
                 numberOfSingleOccurence = 1;
@@ -138,110 +138,96 @@ public class SicBoBetPayout {
 
     public int returnPayoutForSums(int[] diceValues, int[] sumBets) {
         int payout = 0;
-        if (sicBoCheckForSums.checkSumFor4(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,4)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf4and17Winnings(sumBets[0]);
-
         }
-        if (sicBoCheckForSums.checkSumFor5(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,5)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf5and16Winnings(sumBets[1]);
-
         }
-        if (sicBoCheckForSums.checkSumFor6(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,6)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf6and15Winnings(sumBets[2]);
-
         }
-        if (sicBoCheckForSums.checkSumFor7(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,7)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf7and14Winnings(sumBets[3]);
-
         }
-        if (sicBoCheckForSums.checkSumFor8(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,8)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf8and13Winnings(sumBets[4]);
-
         }
-        if (sicBoCheckForSums.checkSumFor9(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,9)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[5]);
-
         }
-        if (sicBoCheckForSums.checkSumFor10(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,10)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[6]);
-
         }
-        if (sicBoCheckForSums.checkSumFor11(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,11)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[7]);
-
         }
-        if (sicBoCheckForSums.checkSumFor12(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,12)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf9and10and11and12Winnings(sumBets[8]);
-
         }
-        if (sicBoCheckForSums.checkSumFor13(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,13)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf8and13Winnings(sumBets[9]);
-
         }
-        if (sicBoCheckForSums.checkSumFor14(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,14)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf7and14Winnings(sumBets[10]);
-
         }
-        if (sicBoCheckForSums.checkSumFor15(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,15)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf6and15Winnings(sumBets[11]);
-
         }
-        if (sicBoCheckForSums.checkSumFor16(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,16)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf5and16Winnings(sumBets[12]);
-
         }
-        if (sicBoCheckForSums.checkSumFor17(diceValues)) {
+        if (sicBoCheckForSums.checkSum(diceValues,17)) {
             payout += sicBoPayoutOnSumsCalculator.calculateSumOf4and17Winnings(sumBets[13]);
-
         }
         return payout;
     }
 
     public int returnPayoutForSpecific2Die(int[] diceValues, int[] sumBets) {
         int payout = 0;
-        if (sicBoCheckForSpecific2Die.checkForA1and2(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,1,2)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[0]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA1and3(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,1,3)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[1]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA1and4(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,1,4)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[2]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA1and5(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,1,5)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[3]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA1and6(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,1,6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[4]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA2and3(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,2,3)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[5]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA2and4(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,2,4)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[6]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA2and5(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,2,5)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[7]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA2and6(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,2,6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[8]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA3and4(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,3,4)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[9]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA3and5(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,3,5)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[10]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA3and6(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,3,6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[11]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA4and5(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,4,5)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[12]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA4and6(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,4,6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[13]);
         }
-        if (sicBoCheckForSpecific2Die.checkForA5and6(diceValues)) {
+        if (sicBoCheckForSpecific2Die.check2Die(diceValues,5,6)) {
             payout += sicBoPayoutOnDiceValuesCalculator.calculateAnySpecific2DiceRoll(sumBets[14]);
         }
         return payout;

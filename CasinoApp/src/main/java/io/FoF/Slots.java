@@ -21,6 +21,8 @@ public class Slots extends Game {
     protected Tumbler tum2;
     protected Tumbler tum3;
 
+
+
     public Slots() {
 
         this.stopPlayingSlots = false;

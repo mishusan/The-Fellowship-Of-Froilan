@@ -21,6 +21,9 @@ public class Casino {
         this.numberOfMembers = 0;
     }
 
+    /**
+     * Creates new player with attributes
+     */
     public void createPlayer(){
         Player player = new Player();
         player.setName(Display.getStringPrompt("What is your name?"));
@@ -30,9 +33,10 @@ public class Casino {
         playerArrayList.add(player);
         numberOfMembers++;
     }
-    public Player selectPlayer(int playerId) {
+    public Player selectPlayer(int playerId){
         return playerArrayList.get(playerId);
     }
+
     public void checkIfPlayerExistsInArray() {
         try {
             currentPlayer = selectPlayer(playerID);
@@ -43,12 +47,15 @@ public class Casino {
         }
         memberOfCasino = true;
     }
+
     public void askPlayerId() {
         playerID = Display.getIntPrompt("Please type in your Player ID");
     }
+
     public void tellPlayerId() {
         Display.showMessage("Your Player ID is " + (numberOfMembers - 1));
     }
+
     public void runCasino(){
         createPlayer();
         tellPlayerId();
@@ -63,6 +70,7 @@ public class Casino {
                 playerSelectsGame(game);
             }
         }
+
     public void checkAgeOfPlayer(Player player) {
         if (player.getAge() < 21) {
             Display.showMessage("Sorry! Too young to play. Norodeen will escort you out.");
@@ -72,6 +80,7 @@ public class Casino {
             Display.showMessage("Lets Play!");
         }
     }
+
     public void gameSelectionOption() {
         Display.showMessage("Gameplay options: ");
         Display.showMessage("To play Black Jack: press 1");
@@ -80,6 +89,7 @@ public class Casino {
         Display.showMessage("To play Quick Words: press 4");
         Display.showMessage("To exit: press 5");
     }
+
     public void playerSelectsGame( int game){
             switch (game) {
                 case 1:
@@ -93,6 +103,7 @@ public class Casino {
                 case 3:
                     Slots slots = new Slots();
                     slots.startGame(currentPlayer);
+                    break;
                 case 4:
                     QuickWord quickWord = new QuickWord();
                     quickWord.startGame(currentPlayer);
@@ -100,10 +111,17 @@ public class Casino {
                 case 5:
                     exitCasino();
                     break;
+
+                // ------------ DELETE THIS LATER
+                case 5:
+                    Roulette roulette = new Roulette();
+                    roulette.startGame(currentPlayer);
+                    break;
                 default:
                     Display.showMessage("Sorry that is not an option.");
             }
     }
+
     public void exitCasino () {
             stillInCasino = false;
             Display.showMessage("Goodbye!");

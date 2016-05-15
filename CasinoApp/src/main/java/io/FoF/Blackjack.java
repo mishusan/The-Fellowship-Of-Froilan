@@ -22,6 +22,7 @@ public class Blackjack extends CardGame {
         handlePlayersTurn();
         handleDealersTurn();
         checkWhoWonTheHand();
+        Display.showMessage("DEALER: " + dealer.getHandTotalValue() + " : " +"PLAYER: " + blackjackPlayer.getHandTotalValue());
         Display.showMessage("Purse after game: " + blackjackPlayer.getPurse());
     }
 
@@ -92,15 +93,22 @@ public class Blackjack extends CardGame {
     }
 
     public void followBlackjackRulesForDealer() {
+        checkIfDealerHas21();
         checkIfDealersHandIsBelow17AndMustHit();
         checkIfDealerBusts();
         checkIfDealersHandIsAbove16ButLessThan21AndHasToStay();
     }
 
+    public void checkIfDealerHas21(){
+        if(dealer.getHandTotalValue() == 21)
+            dealerHasTurn = false;
+    }
+
     public void checkIfDealersHandIsBelow17AndMustHit() {
-        if (dealer.getHandTotalValue() < 17)
-            Display.showMessage("Dealer Hits: \n" + dealer.printHand(true));
-        dealer.addCardToHand(deck.dealNextCard());
+        if (dealer.getHandTotalValue() < 17) {
+            Display.showMessage("Dealer Hits... \n" + dealer.printHand(true));
+            dealer.addCardToHand(deck.dealNextCard());
+        }
     }
 
     public void checkIfDealerBusts() {
@@ -139,8 +147,10 @@ public class Blackjack extends CardGame {
     }
 
     public void checkIfPlayerHandEquals21EndingTheirTurn() {
-        if (blackjackPlayer.getHandTotalValue() == 21)
+        if (blackjackPlayer.getHandTotalValue() == 21) {
+            Display.showMessage("**Player has 21**");
             playerHasTurn = false;
+        }
     }
 
     public void checkIfPlayerBustsEndingTheirTurn() {
