@@ -16,35 +16,18 @@ public class SicBo extends Game {
     private int smallBet;
     private int bigBet;
     private int[] dicesValues;
-    private boolean stillPlaying = true;
     SicBoBetPayout sicBoBetPayout = new SicBoBetPayout();
-    SicBoBetInput sicBoBetInput = new SicBoBetInput();
+    BetInput betInput = new BetInput();
 
-    void startGame(Player player) {
+    public void startGame(Player player) {
         dicesValues = new int[3];
-        while (stillPlaying) {
-            placeBet(player);
-            shuffle();
-            display.showMessage("\n" + sendDisplayResults() + "\n");
-            checkToSeeIfPlayerWon(player);
-            display.showMessage("\nYou have " + player.getPurse() + " dollars left in your purse");
-
-            if (display.getStringPrompt("Are you done playing?(yes or no): ").equals("yes")) {
-                stillPlaying = false;
-            }
-
-        }
-
+        super.startGame(player);
     }
 
     public void placeBet(Player player) {
 
-        boolean doneBetting = false;
 
         int betTypeChoice = -1;
-        int betSpecificChoice = 0;
-        double currentBetAmount = 0;
-        double totalBetPerRound = 0;
 
         tripleBets = new int[7];
         doubleBets = new int[6];
@@ -58,30 +41,29 @@ public class SicBo extends Game {
             betTypeChoice = display.getIntPrompt("\nBetting Options:\n0: Done Bets\n1: Singles\n2: Doubles\n3: Triples\n4: Sums\n5: Specific 2 Dice\n6: Bet Small\n7: Bet Big\nHow would you like to bet?: ");
             switch (betTypeChoice) {
                 case 1:
-                    singleBets = sicBoBetInput.collectPlayerBetsOnSinglesOrDoubles(player, "Single");
+                    singleBets = betInput.collectPlayerBetInputs(singleBets, player, BetInput.BetType.SINGLE , 1);
                     break;
                 case 2:
-                    doubleBets = sicBoBetInput.collectPlayerBetsOnSinglesOrDoubles(player, "Double");
+                    doubleBets = betInput.collectPlayerBetInputs(doubleBets, player, BetInput.BetType.DOUBLE , 1);
                     break;
                 case 3:
-                    tripleBets = sicBoBetInput.collectPlayerBetsOnTriples(player);
+                    tripleBets = betInput.collectPlayerBetInputs(tripleBets, player, BetInput.BetType.TRIPLE , 0);
                     break;
                 case 4:
-                    sumBets = sicBoBetInput.collectPlayerBetsOnSum(player);
+                    sumBets = betInput.collectPlayerBetInputs(sumBets, player, BetInput.BetType.SUM , 4);
                     break;
                 case 5:
-                    twoDieBets = sicBoBetInput.collectPlayerBetsOnSpecific2Die(player);
+                    twoDieBets = betInput.collectPlayerBetInputs(twoDieBets, player, BetInput.BetType.TWODIE , 1);
                     break;
                 case 6:
-                    smallBet = sicBoBetInput.collectPlayerBetsOnSmallorBig(player);
+                    smallBet = betInput.collectPlayerBetInputs(player);
                     break;
                 case 7:
-                    bigBet = sicBoBetInput.collectPlayerBetsOnSmallorBig(player);
+                    bigBet = betInput.collectPlayerBetInputs(player);
                     break;
             }
         }
-        System.out.println(totalBetPerRound);
-        player.removeMoneyFromPurse(totalBetPerRound);
+
 
 
     }
@@ -110,7 +92,7 @@ public class SicBo extends Game {
         payoutTotal += sicBoBetPayout.returnPayoutForSpecific2Die(dicesValues, twoDieBets);
         payoutTotal += sicBoBetPayout.returnPayoutForSmallBet(dicesValues, smallBet);
         payoutTotal += sicBoBetPayout.returnPayoutForBigBet(dicesValues, bigBet);
-        display.showMessage("Your putting - " + (payoutTotal) + " back to your purse");
+        display.showMessage("Putting $" + (payoutTotal) + " back to your purse");
         player.addMoneyToPurse(payoutTotal);
     }
 }

@@ -5,10 +5,12 @@ public class Card {
 
     private Suit cardSuit;
     private int cardRank;
+    private String asciiCard;
 
-    public Card(Suit suit, int rank) {
+    public Card(Suit suit, int rank, String asciiCard) {
         this.cardSuit = suit;
         this.cardRank = rank;
+        this.asciiCard = asciiCard;
     }
 
     public Suit getCardSuit() {
@@ -18,4 +20,9 @@ public class Card {
     public int getCardRank() {
         return cardRank;
     }
+
+    public String getAsciiCard(){
+        return asciiCard;
+    }
+
 }

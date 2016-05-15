@@ -53,47 +53,47 @@ public class SlotsTest {
         int actualValue14 = slot.allTumblers.get(2).tumbler4;
         int actualValue15 = slot.allTumblers.get(2).tumbler5;
 
-        int expectedValue1 = 20;
+        int expectedValue1 = 4;
         int expectedValue2 = 0;
 
 
 
 
-        assertTrue("Tumbler random number between 0-19",actualValue1 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue2 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue3 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue4 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue5 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue1 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue2 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue3 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue4 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue5 < expectedValue1);
 
-        assertTrue("Tumbler random number between 0-19",actualValue1 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue2 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue3 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue4 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue5 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue1 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue2 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue3 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue4 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue5 >= expectedValue2);
 
-        assertTrue("Tumbler random number between 0-19",actualValue6 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue7 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue8 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue9 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue10 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue6 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue7 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue8 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue9 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue10 < expectedValue1);
 
-        assertTrue("Tumbler random number between 0-19",actualValue6 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue7 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue8 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue9 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue10 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue6 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue7 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue8 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue9 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue10 >= expectedValue2);
 
-        assertTrue("Tumbler random number between 0-19",actualValue11 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue12 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue13 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue14 < expectedValue1);
-        assertTrue("Tumbler random number between 0-19",actualValue15 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue11 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue12 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue13 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue14 < expectedValue1);
+        assertTrue("Tumbler random number between 0-3",actualValue15 < expectedValue1);
 
-        assertTrue("Tumbler random number between 0-19",actualValue11 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue12 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue13 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue14 >= expectedValue2);
-        assertTrue("Tumbler random number between 0-19",actualValue15 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue11 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue12 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue13 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue14 >= expectedValue2);
+        assertTrue("Tumbler random number between 0-3",actualValue15 >= expectedValue2);
     }
 
     @Test
@@ -121,10 +121,50 @@ public class SlotsTest {
         slot.allTumblers.add(tum2);
         slot.allTumblers.add(tum3);
 
-        assertTrue("place bet should raise pot by given amount",slot.checkIfTumblerRowIsAllTheSame(tum1));
-        assertTrue("place bet should raise pot by given amount",slot.checkIfTumblerRowIsAllTheSame(tum2));
-        assertTrue("place bet should raise pot by given amount",slot.checkIfTumblerRowIsAllTheSame(tum3));
+        assertTrue("all rows are the same before shuffle",slot.checkIfTumblerRowIsAllTheSame(tum1));
+        assertTrue("all rows are the same before shuffle",slot.checkIfTumblerRowIsAllTheSame(tum2));
+        assertTrue("all rows are the same before shuffle",slot.checkIfTumblerRowIsAllTheSame(tum3));
 
+    }
+
+    @Test
+    public void checkPaylineFour(){
+
+        Tumbler tum1 = new Tumbler();
+        Tumbler tum2 = new Tumbler();
+        Tumbler tum3 = new Tumbler();
+
+        tum1.setTumbler1(2);
+        tum2.setTumbler2(2);
+        tum3.setTumbler3(2);
+        tum2.setTumbler4(2);
+        tum1.setTumbler5(2);
+
+        slot.allTumblers.add(tum1);
+        slot.allTumblers.add(tum2);
+        slot.allTumblers.add(tum3);
+
+        assertTrue("all rows are the same before shuffle",slot.checkForPaylineFour(tum1,tum2,tum3));
+    }
+
+    @Test
+    public void checkPaylineFive(){
+
+        Tumbler tum1 = new Tumbler();
+        Tumbler tum2 = new Tumbler();
+        Tumbler tum3 = new Tumbler();
+
+        tum3.setTumbler1(2);
+        tum2.setTumbler2(2);
+        tum1.setTumbler3(2);
+        tum2.setTumbler4(2);
+        tum3.setTumbler5(2);
+
+        slot.allTumblers.add(tum1);
+        slot.allTumblers.add(tum2);
+        slot.allTumblers.add(tum3);
+
+        assertTrue("all rows are the same before shuffle",slot.checkForPaylineFive(tum1,tum2,tum3));
     }
 
 

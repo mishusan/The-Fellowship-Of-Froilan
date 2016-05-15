@@ -12,10 +12,10 @@ public class Deck {
     private ArrayList<Card> deckOfCards = new ArrayList<Card>();
 
     public Deck() {
-
+        int asciiCardCounter = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 2; j < 15; j++) {
-                this.deckOfCards.add(new Card(Suit.values()[i], j));
+                this.deckOfCards.add(new Card(Suit.values()[i], j, AsciiCards.asciiCards[asciiCardCounter++]));
             }
         }
     }

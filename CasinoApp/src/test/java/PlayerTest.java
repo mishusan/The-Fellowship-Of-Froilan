@@ -34,7 +34,7 @@ public class PlayerTest {
     @Test
         public void setNameTest(){
         Player player = new Player();
-        String expectedSetName ="Boy";
+        String expectedSetName ="Joy";
         player.setName("Joy");
         String actualSetName = player.getName();
         assertEquals("The expected value should be Joy",expectedSetName,actualSetName);
@@ -42,7 +42,7 @@ public class PlayerTest {
     @Test
         public void getPurseTest(){
         Player player = new Player();
-        double expectedPurse =10.0;
+        double expectedPurse =0.0;
         double actualPurse = player.getPurse();
         assertEquals("The expected value should be 10.0",expectedPurse,actualPurse,0);
     }
@@ -50,8 +50,8 @@ public class PlayerTest {
     @Test
         public void setPurseTest(){
         Player player = new Player();
-        double expectedSetPurse =10.0;
-        player.setPurse(11);
+        double expectedSetPurse =11.0;
+        player.setPurse(11.0);
         double actualSetPurse = player.getPurse();
         assertEquals("The expected value should be 10.0",expectedSetPurse,actualSetPurse,0);
     }
@@ -59,7 +59,7 @@ public class PlayerTest {
     @Test
         public void removeMoneyTest(){
         Player player = new Player();
-        double expectedDollar =11.0;
+        double expectedDollar =-10.0;
         player.removeMoneyFromPurse(10.0);
         double actualDollar = player.getPurse();
         assertEquals("The expected value should be 10.0",expectedDollar,actualDollar,0);
@@ -68,7 +68,7 @@ public class PlayerTest {
     @Test
     public void addMoneyTest(){
         Player player = new Player();
-        double expectedDollar =11.0;
+        double expectedDollar =10.0;
         player.addMoneyToPurse(10.0);
         double actualDollar = player.getPurse();
         assertEquals("The expected value should be 10.0",expectedDollar,actualDollar,0);
