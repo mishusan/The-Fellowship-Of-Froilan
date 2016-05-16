@@ -21,6 +21,9 @@ public class Slots extends Game {
     protected Tumbler tum2;
     protected Tumbler tum3;
 
+    /**
+     * Handles display of the betting table and initializing values
+     */
     public Slots() {
         display.printSlotsPayline();
         stopPlayingSlots = false;
@@ -48,7 +51,10 @@ public class Slots extends Game {
         this.numOfPaylines = numOfPaylines;
     }
 
-
+    /**
+     * starts game and passes in the
+     * @param player
+     */
     public void playGame(Player player) {
         super.player = player;
 
@@ -65,7 +71,9 @@ public class Slots extends Game {
 
             }
         }
-
+        /**
+         * While loop to repeat the process
+         */
         while (!stopPlayingSlots) {
             resetPotandWins();
             betPlaced = false;
@@ -98,6 +106,9 @@ public class Slots extends Game {
         }
     }
 
+    /**
+     * These methods reset values to default so old values dont affect the new game
+     */
     public void resetPotandWins() {
         setPot(0.0);
         setNumOfPaylines(0);
@@ -129,6 +140,9 @@ public class Slots extends Game {
         }
     }
 
+    /**
+     * Randomizing method
+     */
     public void shuffle() {
         Random randomFace = new Random();
 
@@ -152,10 +166,9 @@ public class Slots extends Game {
 
     }
 
-    public void showFace(Tumbler tum, int tumbler) {
-        Display.showMessage("| " + tum.getFace(tumbler) + " |");
-    }
-
+    /**
+     * Prints slot faces
+     */
     public void sendDisplayResultsAll() {
 
         Display.showMessage("_____________________________");
@@ -171,7 +184,11 @@ public class Slots extends Game {
 
     }
 
-
+    /**
+     * handles different win conditions
+     * @param tum
+     * @return
+     */
     public Boolean checkIfTumblerRowIsAllTheSame(Tumbler tum) {
         if (tum.getTumbler1() == tum.getTumbler2() && tum.getTumbler1() == tum.getTumbler3() && tum.getTumbler1() == tum.getTumbler4()
                 && tum.getTumbler1() == tum.getTumbler5()) {
@@ -196,6 +213,9 @@ public class Slots extends Game {
         return false;
     }
 
+    /**
+     * check for win
+     */
     public void checkToSeeIfPlayerWon() {
         for (Tumbler tum : allTumblers) {
             if (checkIfTumblerRowIsAllTheSame(tum)) {
@@ -210,6 +230,9 @@ public class Slots extends Game {
         }
     }
 
+    /**
+     * check win multiplyer
+     */
     public void checkNumOfPaylines() {
         if (numOfPaylines == 0) {
             winnings = 0.0;
@@ -225,6 +248,11 @@ public class Slots extends Game {
         }
     }
 
+    /**
+     * adds winnings to purse
+     * @param player
+     * @param winnings
+     */
     public void addMoneytoPurse(Player player, double winnings) {
         player.addMoneyToPurse(winnings);
     }

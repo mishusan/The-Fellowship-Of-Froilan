@@ -7,6 +7,9 @@ import java.util.Date;
  * Created by matthewb on 5/14/16.
  */
 public class QuickWord extends Game implements Runnable {
+    /**
+     * sets the values needed to allow multi threading and keep tarck of time
+     */
     private Thread t;
     private String threadQuickWord;
     double pot;
@@ -17,6 +20,9 @@ public class QuickWord extends Game implements Runnable {
     static int counter;
     BetInput betInput = new BetInput();
 
+    /**
+     * Handles creation of the string to be attempted by the user
+     */
     public QuickWord() {
         threadQuickWord = "newQuickWordThread";
         pot = 0;
@@ -48,6 +54,9 @@ public class QuickWord extends Game implements Runnable {
 
     }
 
+    /**
+     * prints string values
+     */
     public void run() {
         try {
             for (int i = 0; i < 20; i++) {
@@ -65,6 +74,10 @@ public class QuickWord extends Game implements Runnable {
         }
     }
 
+    /**
+     * Handles betting logic and takes in
+     * @param player
+     */
     public void playGame(Player player) {
         bet = Display.getDoublePrompt("How much are you betting?");
         if (betInput.checkAmountInPurse(player, bet)) {
@@ -76,7 +89,9 @@ public class QuickWord extends Game implements Runnable {
         }
         Display.showMessage("Enter the Letters as they Appear to Get Points");
         Display.showMessage("Get ready..... Go!");
-
+        /**
+        *Set's date for time keeping purposes
+        */
         date = new Date();
         QuickWord R1 = new QuickWord();
         R1.start();
@@ -90,6 +105,10 @@ public class QuickWord extends Game implements Runnable {
 
     }
 
+    /**
+     * Handles the time limit necessary for this game
+     * @param quickWord
+     */
     public void multiThreadLetterDisplay(QuickWord quickWord) {
         for (int numGuess = 0; numGuess < 22; numGuess++) {
             Date newDate = new Date();

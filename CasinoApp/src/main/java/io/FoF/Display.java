@@ -1,19 +1,20 @@
 package io.FoF;
 
-import org.omg.CORBA.Object;
-import org.omg.CORBA.portable.InputStream;
+/*
+* Created by Nurudeen Lawal
+*/
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class Display {
-    /*Used to display common variables*/
 
 
+    /**
+     * Return full greeting with logo
+     */
     static void welcome(String name) {
         System.out.println("\nHello, " + name + " and WELCOME to the FoF casino.\nWe thank you for all your donations to the Fellowship.\n");
         showLogo();
@@ -76,15 +77,9 @@ public class Display {
         System.out.println(message);
     }
 
-    static void pausedShowMessage(String messages[]) {
-        for (int i = 0; i < messages.length; i++) {
-            try {
-                Thread.sleep(4000);
-            } catch (InterruptedException e) {
-            }
-            System.out.println(messages[i]);
-        }
-    }
+    /**
+     * Prints the various betting tables for the games of chance
+     */
     public void printSicBoTable(){
         System.out.println("\nPlease refer to the new window for betting instructions");
         JFrame frame = new JFrame();
@@ -114,7 +109,9 @@ public class Display {
 
 
     /*++++++++++++++++++++++++++++++++++++++++++++++++++INPUT FROM USER+++++++++++++++++++++++++++++++++++++++++++++++*/
-    /*This creates the scanner object and takes in the input of all  data types to be expected*/
+    /*
+    *This creates the scanner object and takes in the input of all  data types to be expected
+    **/
     static Scanner input = new Scanner(System.in);
 
     static void printMessage(String msg) {

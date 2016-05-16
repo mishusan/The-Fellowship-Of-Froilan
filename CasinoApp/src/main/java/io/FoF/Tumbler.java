@@ -3,8 +3,12 @@ package io.FoF;
 /**
  * Created by matthewb on 5/11/16.
  */
-public class Tumbler {
 
+
+public class Tumbler {
+    /**
+     * initialize tumbler values
+     */
     int tumbler1;
     int tumbler2;
     int tumbler3;
@@ -19,6 +23,10 @@ public class Tumbler {
         tumbler5 = 0;
     }
 
+    /**
+     * setters for tumblers
+     * @param tumbler1
+     */
     public void setTumbler1(int tumbler1) {
         this.tumbler1 = tumbler1 %4;
 
@@ -43,6 +51,10 @@ public class Tumbler {
 
     }
 
+    /**
+     *
+     * @return tumbler values
+     */
     public int getTumbler1() {
         return this.tumbler1;
     }

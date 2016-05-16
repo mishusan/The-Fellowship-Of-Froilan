@@ -2,10 +2,17 @@ package io.FoF;
 
 
 public class Player {
+    /**
+     * These are the values any player should have
+     */
     private String name;
     private double purse;
     private int age;
 
+    /**
+     * Getters and setters for the player values
+     * @return age, name and purse
+     */
     public int getAge() {
         return age;
     }

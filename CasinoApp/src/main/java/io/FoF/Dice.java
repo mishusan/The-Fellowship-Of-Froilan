@@ -9,6 +9,9 @@ public class Dice {
 
     private int diceValue;
 
+    /**
+     * Asci art values for different face of the dice
+     */
     private String diceArt[] = {"-------\n" +
                                 "|     |\n" +
                                 "|  o  |\n" +
@@ -40,7 +43,9 @@ public class Dice {
                                 "|o   o|\n" +
                                 "-------\n"};
 
-
+    /**
+     * Handles how dice behave
+     */
     public Dice() {
         roll();
     }
@@ -49,10 +54,18 @@ public class Dice {
         return diceValue;
     }
 
+    /**
+     *
+     * @return a dice face based on value
+     */
     public String getDiceFace(){
         return diceArt[diceValue()-1];
 
     }
+
+    /**
+     * Handles "Rolling of dice"
+     */
     public void roll() {
         Random random = new Random();
         diceValue = random.nextInt(6) + 1;
