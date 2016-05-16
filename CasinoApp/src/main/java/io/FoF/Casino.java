@@ -76,6 +76,7 @@ public class Casino {
                     break;
                 case 6:
                     exitCasino();
+                    break;
                 default:
                     Display.showMessage("Sorry that is not an option.");
             }
