@@ -5,12 +5,20 @@ package io.FoF;
  */
 public class BetInput {
 
+    /**
+     * This enum just holds a list of different bet display options
+     */
     public enum BetType{
         SINGLE, DOUBLE, TRIPLE, SUM, TWODIE, BIG, SMALL,ROULETTENUMBERS,ROULETTERANGE, ROULETTECOLUMN, ROULETTEROW
     }
 
     Display display = new Display();
 
+    /**
+     * Returns the correct bet question depending on the enum
+     * @param betType
+     * @return
+     */
     public String getBetQuestion(BetType betType){
         String betQuestion = "";
         switch (betType){
@@ -67,7 +75,14 @@ public class BetInput {
         return betQuestion;
     }
 
-
+    /**
+     * This method returns an array of different bet combinations for multiple casino games
+     * @param bets
+     * @param player
+     * @param betType
+     * @param differential
+     * @return
+     */
     public int[] collectPlayerBetInputs(int[] bets, Player player, BetType betType, int differential) {
         int betSpecificChoice;
         int currentBetAmount;
@@ -89,6 +104,11 @@ public class BetInput {
         return bets;
     }
 
+    /**
+     * This method takes a player bet for a single bet option
+     * @param player
+     * @return
+     */
     public int collectPlayerBetInputs(Player player) {
         int bet = 0;
         double currentBetAmount;

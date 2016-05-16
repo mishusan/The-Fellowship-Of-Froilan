@@ -16,12 +16,19 @@ public class Roulette extends Game{
     RoulettePayoutCalculator roulettePayoutCalculator = new RoulettePayoutCalculator();
     BetInput betInput = new BetInput();
 
+    /**
+     * This is main engine for the Roulette game, it instantiates the variable needed for this game, and calls the super's game method
+     * @param player
+     */
     public void playGame(Player player) {
         display.printRouletteTable();
         rouletteWheel = new RouletteWheel();
         super.playGame(player);
     }
 
+    /**
+     * This take cares of all the betting options a player can have for the Roulette game
+     */
     public void placeBet() {
 
         int betTypeChoice = -1;
@@ -53,15 +60,25 @@ public class Roulette extends Game{
 
     }
 
+    /**
+     * Creates a new instance of RouletteWheel to get a result of the spin
+     */
     void shuffle() {
         rouletteWheel = new RouletteWheel();
 
     }
 
+    /**
+     * Returns out the results of the Roulette Wheel
+     * @return
+     */
     public String sendDisplayResults() {
         return "Roulette comes out to "+rouletteWheel.rouletteValue()+" "+rouletteWheel.rouletteColor();
     }
 
+    /**
+     * This methods checks and calculates the player winnings based on their bets and payout ratios
+     */
     public void checkToSeeIfPlayerWon() {
         int payoutTotal = 0;
         for(int i = 0; i < numberBets.length; i++){

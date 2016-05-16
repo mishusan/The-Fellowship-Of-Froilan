@@ -2,7 +2,9 @@ package io.FoF;
 
 
 public class AsciiCards {
-
+    /**
+     * This method holds all the ascii art values for all the cards
+     */
     public static  String[] asciiCards = {
             "  _________\n |2        |\n |♥        |\n |    ♥    |\n |         |\n |    ♥    |\n |        ♥|\n |        Z|\n  ~~~~~~~~~",
             "  _________\n |3        |\n |♥   ♥    |\n |         |\n |    ♥    |\n |         |\n |    ♥   ♥|\n |        E|\n  ~~~~~~~~~ ",

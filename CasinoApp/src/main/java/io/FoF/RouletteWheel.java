@@ -9,6 +9,10 @@ public class RouletteWheel {
 
     private int rouletteValue;
     RouletteColor rouletteColor;
+
+    /**
+     * This enum if just a list of color options of the roulette wheel
+     */
     public enum RouletteColor{
         RED,BLACK
     }
@@ -17,7 +21,9 @@ public class RouletteWheel {
     private String diceASCII;
 
 
-
+    /**
+     * Creates a new instance of roulette wheels and spins for a result
+     */
     public RouletteWheel() {
         roll();
     }
@@ -28,6 +34,10 @@ public class RouletteWheel {
     public RouletteColor rouletteColor() {
         return rouletteColor;
     }
+
+    /**
+     * Creates the result of the wheel and assign correct color
+     */
     public void roll() {
         Random random = new Random();
         rouletteValue = random.nextInt(38) ;

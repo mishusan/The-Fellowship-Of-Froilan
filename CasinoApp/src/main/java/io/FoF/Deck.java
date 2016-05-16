@@ -11,6 +11,9 @@ public class Deck {
 
     private ArrayList<Card> deckOfCards = new ArrayList<Card>();
 
+    /**
+     * Creates a new instance of Deck which hold 52 Cards
+     */
     public Deck() {
         int asciiCardCounter = 0;
         for (int i = 0; i < 4; i++) {
@@ -20,6 +23,9 @@ public class Deck {
         }
     }
 
+    /**
+     * This method shuffles the order of the cards in the deck
+     */
     public void shuffle() {
         Collections.shuffle(deckOfCards);
     }
@@ -30,6 +36,11 @@ public class Deck {
         return nextCard;
     }
 
+    /**
+     * This method return the String value of the card
+     * @param valueToString
+     * @return
+     */
     public static String faceValueToString(int valueToString) {
 
         HashMap<Integer, String> faceValuesToString = new HashMap<Integer, String>() {

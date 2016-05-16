@@ -5,8 +5,11 @@ package io.FoF.SicBoResultsChecker;
  */
 public class SicBoCheckForSums {
 
-    //This class checks the dice roll sums
-
+    /**
+     * This class checks the dice roll and returns true for dice sum (4 - 10)
+     * @param dicesValues
+     * @return
+     */
     public boolean checkSumForSmall(int[] dicesValues) {
         int diceSum = dicesValues[0] + dicesValues[1] + dicesValues[2];
         if (!((dicesValues[0] == dicesValues[1]) && (dicesValues[1] == dicesValues[2]) && (dicesValues[0] == dicesValues[2]))) {
@@ -16,7 +19,11 @@ public class SicBoCheckForSums {
         }
         return false;
     }
-
+    /**
+     * This class checks the dice roll and returns true for dice sum (11 - 17)
+     * @param dicesValues
+     * @return
+     */
     public boolean checkSumForBig(int[] dicesValues) {
         int diceSum = dicesValues[0] + dicesValues[1] + dicesValues[2];
         if (!((dicesValues[0] == dicesValues[1]) && (dicesValues[1] == dicesValues[2]) && (dicesValues[0] == dicesValues[2]))) {
@@ -26,7 +33,11 @@ public class SicBoCheckForSums {
         }
         return false;
     }
-
+    /**
+     * This class checks the dice roll and returns true for a specific dice sum
+     * @param dicesValues
+     * @return
+     */
     public boolean checkSum(int[] dicesValues, int specificSum) {
         int diceSum = dicesValues[0] + dicesValues[1] + dicesValues[2];
         if (diceSum == specificSum) {
