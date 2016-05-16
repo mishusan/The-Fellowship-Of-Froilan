@@ -19,31 +19,31 @@ public class QuickWord extends Game implements Runnable {
 
     public QuickWord() {
         threadQuickWord = "newQuickWordThread";
-        this.pot = 0;
-        this.correctGuesses = 0;
-        this.strings = new String[21];
-        this.strings[0] = "x";
-        this.strings[1] = "y";
-        this.strings[2] = "z";
-        this.strings[3] = "x";
-        this.strings[4] = "x";
-        this.strings[5] = "z";
-        this.strings[6] = "z";
-        this.strings[7] = "y";
-        this.strings[8] = "x";
-        this.strings[8] = "q";
-        this.strings[9] = "f";
-        this.strings[10] = "e";
-        this.strings[11] = "l";
-        this.strings[12] = "l";
-        this.strings[13] = "o";
-        this.strings[14] = "w";
-        this.strings[15] = "s";
-        this.strings[16] = "h";
-        this.strings[17] = "i";
-        this.strings[18] = "p";
-        this.strings[19] = "of";
-        this.strings[20] = "Froilan";
+        pot = 0;
+        correctGuesses = 0;
+        strings = new String[21];
+        strings[0] = "x";
+        strings[1] = "y";
+        strings[2] = "z";
+        strings[3] = "x";
+        strings[4] = "x";
+        strings[5] = "z";
+        strings[6] = "z";
+        strings[7] = "y";
+        strings[8] = "x";
+        strings[8] = "q";
+        strings[9] = "f";
+        strings[10] = "e";
+        strings[11] = "l";
+        strings[12] = "l";
+        strings[13] = "o";
+        strings[14] = "w";
+        strings[15] = "s";
+        strings[16] = "h";
+        strings[17] = "i";
+        strings[18] = "p";
+        strings[19] = "of";
+        strings[20] = "Froilan";
 
 
     }

@@ -9,7 +9,37 @@ public class Dice {
 
     private int diceValue;
 
-    private String diceASCII;
+    private String diceArt[] = {"-------\n" +
+                                "|     |\n" +
+                                "|  o  |\n" +
+                                "|     |\n" +
+                                "-------",
+                                "-------\n" +
+                                "|o    |\n" +
+                                "|     |\n" +
+                                "|    o|\n" +
+                                "-------",
+                                "-------\n" +
+                                "|o    |\n" +
+                                "|  o  |\n" +
+                                "|    o|\n" +
+                                "-------",
+                                "-------\n" +
+                                "|o   o|\n" +
+                                "|     |\n" +
+                                "|o   o|\n" +
+                                "-------",
+                                "-------\n" +
+                                "|o   o|\n" +
+                                "|  o  |\n" +
+                                "|o   o|\n" +
+                                "-------",
+                                "-------\n" +
+                                "|o   o|\n" +
+                                "|o   o|\n" +
+                                "|o   o|\n" +
+                                "-------\n"};
+
 
     public Dice() {
         roll();
@@ -19,6 +49,10 @@ public class Dice {
         return diceValue;
     }
 
+    public String getDiceFace(){
+        return diceArt[diceValue()-1];
+
+    }
     public void roll() {
         Random random = new Random();
         diceValue = random.nextInt(6) + 1;

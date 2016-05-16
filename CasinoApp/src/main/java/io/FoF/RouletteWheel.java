@@ -16,6 +16,8 @@ public class RouletteWheel {
 
     private String diceASCII;
 
+
+
     public RouletteWheel() {
         roll();
     }

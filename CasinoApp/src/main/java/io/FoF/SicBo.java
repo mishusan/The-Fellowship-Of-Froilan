@@ -25,7 +25,7 @@ public class SicBo extends Game {
         super.playGame(player);
     }
 
-    public void placeBet(Player player) {
+    public void placeBet() {
 
 
         int betTypeChoice = -1;
@@ -80,7 +80,7 @@ public class SicBo extends Game {
     }
 
     public String sendDisplayResults() {
-        return "Dice rolls are: " + dice1.diceValue() + "  " + dice2.diceValue() + "  " + dice3.diceValue();
+        return "Dice rolls are:\n" + dice1.getDiceFace() + "\n" + dice2.getDiceFace() + "\n" + dice3.getDiceFace();
     }
 
     public void checkToSeeIfPlayerWon() {

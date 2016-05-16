@@ -4,8 +4,6 @@ import io.FoF.SicBoPayoutCalculatorPackage.SicBoPayoutOnDiceValuesCalculator;
 import io.FoF.SicBoPayoutCalculatorPackage.SicBoPayoutOnSumsCalculator;
 import io.FoF.SicBoResultsChecker.*;
 
-import java.util.HashMap;
-
 /**
  * Created by minlee on 5/11/16.
  */

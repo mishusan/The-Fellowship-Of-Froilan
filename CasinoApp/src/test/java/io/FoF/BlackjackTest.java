@@ -10,7 +10,8 @@ public class BlackjackTest {
 
     Player player;
     Blackjack blackjack;
-    BlackjackPlayer blackjackPlayer;
+    BlackjackPlayer blackjackPlayer, dealer;
+    BlackJackChecker blackJackChecker;
     Deck deck;
     Card card;
 
@@ -20,6 +21,8 @@ public class BlackjackTest {
         player.setName("Mike");
         blackjack = new Blackjack();
         blackjackPlayer = new BlackjackPlayer(player);
+        dealer = new BlackjackPlayer(player);
+        blackJackChecker = new BlackJackChecker();
         deck = new Deck();
         card = new Card(Suit.Clubs, 5, "");
     }
@@ -58,7 +61,7 @@ public class BlackjackTest {
     @Test
     public void addCardToHandTest(){
         blackjackPlayer.addCardToHand(deck.dealNextCard());
-        String expectedValue = "Two of Hearts\n";
+        String expectedValue = "Two of Hearts\n" + "  _________\n |2        |\n |♥        |\n |    ♥    |\n |         |\n |    ♥    |\n |        ♥|\n |        Z|\n  ~~~~~~~~~\n";
         String actualValue = blackjackPlayer.printHand(true);
         assertEquals("The card should be Two of Hearts", expectedValue, actualValue);
     }
@@ -82,4 +85,59 @@ public class BlackjackTest {
         assertEquals("The hand total should be 20", expectedValue, actualValue);
     }
 
+    @Test
+    public void checkIfHandIsBelow17Test(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 5, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 8, ""));
+        assertTrue(blackJackChecker.checkIfHandIsBelow17(blackjackPlayer));
+    }
+
+    @Test
+    public void checkIfPlayerWonTest(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 5, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 8, ""));
+        assertTrue(blackJackChecker.checkIfPlayerWon(blackjackPlayer, dealer));
+    }
+
+    @Test
+    public void checkPushTest(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 5, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Hearts, 5, ""));
+        dealer.addCardToHand(new Card(Suit.Diamonds, 5, ""));
+        dealer.addCardToHand(new Card(Suit.Spades, 5, ""));
+        assertTrue(blackJackChecker.checkPush(blackjackPlayer, dealer));
+    }
+
+    @Test
+    public void checkIfPlayerHasBlackjackTest(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 14, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Hearts, 10, ""));
+        assertTrue(blackJackChecker.checkIfPlayerHasBlackjack(blackjackPlayer));
+    }
+
+    @Test
+    public void checkIfHandEquals21Test(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 5, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Hearts, 10, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 6, ""));
+        assertTrue(blackJackChecker.checkIfHandEquals21(blackjackPlayer));
+    }
+
+    @Test
+    public void checkIfBustsTest(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 5, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Hearts, 10, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 6, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 9, ""));
+        assertTrue(blackJackChecker.checkIfBusts(blackjackPlayer));
+    }
+
+    @Test
+    public void isHandOver21Test(){
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 5, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Hearts, 10, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 6, ""));
+        blackjackPlayer.addCardToHand(new Card(Suit.Clubs, 9, ""));
+        assertTrue(blackJackChecker.isHandOver21(blackjackPlayer));
+    }
 }

@@ -92,6 +92,7 @@ public class Slots extends Game {
                     Display.showMessage("You won!! " + winnings);
                 }
                 addMoneytoPurse(player, winnings);
+                Display.showMessage("You have "+player.getPurse()+" dollars left in your purse\n");
                 String choice = Display.getStringPrompt("Are you done playing (yes or no)?: ");
                 stopPlayingSlots = stopGame(choice);
             }
