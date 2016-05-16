@@ -5,8 +5,13 @@ package io.FoF.SicBoResultsChecker;
  */
 public class SicBoCheckForDiceDoubles {
 
-    //This class checks the dice roll doubles
 
+    /**
+     * This class checks the dice roll and returns true for a specific double
+     * @param dicesValues
+     * @param specificValue
+     * @return
+     */
     public boolean checkForDoubles(int[] dicesValues, int specificValue) {
         int numberOfSpecificValues = 0;
         if (dicesValues[0] == specificValue) {

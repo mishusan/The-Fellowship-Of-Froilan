@@ -23,6 +23,9 @@ public class Casino {
         player.setPurse(Display.getDoublePrompt("How much would you like to donate to the Fellowship of Froilan?: "));
     }
 
+    /**
+     * It is the main engine of the casino application
+     */
     public void runCasino(){
         createPlayer();
         while (stillInCasino) {
@@ -32,6 +35,10 @@ public class Casino {
             }
         }
 
+    /**
+     * Checks the age of the player, they must be over 21 to play
+     * @param player
+     */
     public void checkAgeOfPlayer(Player player) {
         if (player.getAge() < 21) {
             Display.showMessage("Sorry! Too young to play. Nurudeen will escort you out.");
@@ -42,6 +49,9 @@ public class Casino {
         }
     }
 
+    /**
+     * Display the different casino games a player can engage in
+     */
     public void gameSelectionOption() {
         Display.showMessage("\nChoose a Casino Game!: ");
         Display.showMessage("1: To play Black Jack");
@@ -52,6 +62,10 @@ public class Casino {
         Display.showMessage("6: To exit");
     }
 
+    /**
+     * It is the switch engine that calls the correct game based on the player's choice
+     * @param game
+     */
     public void playerSelectsGame( int game){
             switch (game) {
                 case 1:
@@ -82,6 +96,9 @@ public class Casino {
             }
     }
 
+    /**
+     * It is the end of the running portion of the program
+     */
     public void exitCasino () {
             stillInCasino = false;
             Display.showMessage("Goodbye!");

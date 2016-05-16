@@ -10,6 +10,7 @@ public class Blackjack extends Game {
     private Player player;
     private boolean playerBlackJack = false;
 
+
     public void playGame(Player player) {
         this.player = player;
 

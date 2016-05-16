@@ -5,15 +5,23 @@ import java.util.ArrayList;
 
 public class BlackjackPlayer{
 
+
     private String name;
     private ArrayList<Card> hand = new ArrayList<Card>();
     private int numberOfCardsInHand = 0;
 
-
+    /**
+     * Creates a new instance of blackjack player based on the player of casino
+     * @param player
+     */
     public BlackjackPlayer(Player player) {
         name = player.getName();
     }
-    
+
+    /**
+     * Creates a new instance of blackjack player based on name only
+     * @param name
+     */
     public BlackjackPlayer(String name) {
         this.name = name;
     }
@@ -22,11 +30,20 @@ public class BlackjackPlayer{
         return name;
     }
 
+    /**
+     * Adds a new card to the players hand
+     * @param newCard
+     */
     public void addCardToHand(Card newCard) {
         hand.add(newCard);
         this.numberOfCardsInHand++;
     }
 
+    /**
+     * Prints out the value and ascii art of the cards in the hand, hides the first card if it is dealer's initial hand
+     * @param showCard
+     * @return
+     */
     public String printHand(boolean showCard) {
         String cardInHand = "";
         System.out.printf("%s's cards:\n", this.name);
@@ -40,7 +57,10 @@ public class BlackjackPlayer{
         return cardInHand;
     }
 
-
+    /**
+     * Returns the value of the total values of a player's hand, it counts Aces being 1 or 11
+     * @return
+     */
     public int getHandTotalValue() {
         int handTotal = 0;
         int numberOfAces = 0;

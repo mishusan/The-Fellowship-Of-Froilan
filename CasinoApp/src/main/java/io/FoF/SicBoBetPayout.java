@@ -18,6 +18,12 @@ public class SicBoBetPayout {
     SicBoPayoutOnDiceValuesCalculator sicBoPayoutOnDiceValuesCalculator = new SicBoPayoutOnDiceValuesCalculator();
     SicBoPayoutOnSumsCalculator sicBoPayoutOnSumsCalculator = new SicBoPayoutOnSumsCalculator();
 
+    /**
+     * Returns the earnings on all triple bets
+     * @param diceValues
+     * @param tripleBets
+     * @return
+     */
     public int returnPayoutForTriples(int[] diceValues, int[] tripleBets) {
         int payout = 0;
         if (sicBoCheckForDiceTriples.checkForAnyTriple(diceValues)) {
@@ -44,6 +50,12 @@ public class SicBoBetPayout {
         return payout;
     }
 
+    /**
+     * Returns the earnings on all double bets
+     * @param diceValues
+     * @param doubleBet
+     * @return
+     */
     public int returnPayoutForDoubles(int[] diceValues, int[] doubleBet) {
         int payout = 0;
         if (sicBoCheckForDiceDoubles.checkForDoubles(diceValues,1)) {
@@ -67,6 +79,12 @@ public class SicBoBetPayout {
         return payout;
     }
 
+    /**
+     * Returns the earnings on all single bets
+     * @param diceValues
+     * @param singleBets
+     * @return
+     */
     public int returnPayoutForSingles(int[] diceValues, int[] singleBets) {
         int payout = 0;
         int numberOfSingleOccurence;
@@ -134,6 +152,12 @@ public class SicBoBetPayout {
         return payout;
     }
 
+    /**
+     * Returns the earnings on all sum bets
+     * @param diceValues
+     * @param sumBets
+     * @return
+     */
     public int returnPayoutForSums(int[] diceValues, int[] sumBets) {
         int payout = 0;
         if (sicBoCheckForSums.checkSum(diceValues,4)) {
@@ -180,6 +204,13 @@ public class SicBoBetPayout {
         }
         return payout;
     }
+
+    /**
+     * Returns the earnings on all specific 2 die bets
+     * @param diceValues
+     * @param sumBets
+     * @return
+     */
 
     public int returnPayoutForSpecific2Die(int[] diceValues, int[] sumBets) {
         int payout = 0;
@@ -231,6 +262,12 @@ public class SicBoBetPayout {
         return payout;
     }
 
+    /**
+     * Returns the earnings for a small bet (4 -10)
+     * @param diceValues
+     * @param smallBet
+     * @return
+     */
     public int returnPayoutForSmallBet(int[] diceValues, int smallBet) {
         int payout = 0;
         if (sicBoCheckForSums.checkSumForSmall(diceValues)) {
@@ -239,7 +276,12 @@ public class SicBoBetPayout {
         }
         return payout;
     }
-
+    /**
+     * Returns the earnings for a small bet (11 -17)
+     * @param diceValues
+     * @param bigBet
+     * @return
+     */
     public int returnPayoutForBigBet(int[] diceValues, int bigBet) {
         int payout = 0;
         if (sicBoCheckForSums.checkSumForBig(diceValues)) {

@@ -5,6 +5,13 @@ package io.FoF.SicBoResultsChecker;
  */
 public class SicBoCheckForSpecific2Die {
 
+    /**
+     * This class checks the dice roll and returns true for any specific 2Die pair
+     * @param dicesValues
+     * @param checkValue1
+     * @param checkValue2
+     * @return
+     */
     public boolean check2Die(int[] dicesValues, int checkValue1, int checkValue2) {
         boolean roll1 = false;
         boolean roll2 = false;

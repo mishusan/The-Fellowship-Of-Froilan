@@ -18,13 +18,18 @@ public class SicBo extends Game {
     private int[] dicesValues;
     SicBoBetPayout sicBoBetPayout = new SicBoBetPayout();
     BetInput betInput = new BetInput();
-
+    /**
+     * This is main engine for the SicBo game, it instantiates the variable needed for this game, and calls the super's game method
+     * @param player
+     */
     public void playGame(Player player) {
         display.printSicBoTable();
         dicesValues = new int[3];
         super.playGame(player);
     }
-
+    /**
+     * This take cares of all the betting options a player can have for the SicBo game
+     */
     public void placeBet() {
 
 
@@ -69,7 +74,9 @@ public class SicBo extends Game {
 
     }
 
-
+    /**
+     * Creates three new instances of dice to get a result of three dice rolls
+     */
     void shuffle() {
         dice1 = new Dice();
         dice2 = new Dice();
@@ -78,11 +85,16 @@ public class SicBo extends Game {
         dicesValues[1] = dice2.diceValue();
         dicesValues[2] = dice3.diceValue();
     }
-
+    /**
+     * Returns out the results of the dice values
+     * @return
+     */
     public String sendDisplayResults() {
         return "Dice rolls are:\n" + dice1.getDiceFace() + "\n" + dice2.getDiceFace() + "\n" + dice3.getDiceFace();
     }
-
+    /**
+     * This methods checks and calculates the player winnings based on their bets and payout ratios
+     */
     public void checkToSeeIfPlayerWon() {
         int payoutTotal = 0;
         payoutTotal += sicBoBetPayout.returnPayoutForTriples(dicesValues, tripleBets);

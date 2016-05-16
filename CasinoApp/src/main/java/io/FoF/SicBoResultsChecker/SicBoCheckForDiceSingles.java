@@ -5,8 +5,12 @@ package io.FoF.SicBoResultsChecker;
  */
 public class SicBoCheckForDiceSingles {
 
-    //This class checks the dice roll singles
-
+    /**
+     * This class checks the dice roll and returns true for a specific single
+     * @param dicesValues
+     * @param specificValue
+     * @return
+     */
     public boolean checkForSingles(int[] dicesValues , int specificValue) {
         if ((dicesValues[0] == specificValue) || (dicesValues[1] == specificValue) || (dicesValues[2] == specificValue)) {
             return true;
