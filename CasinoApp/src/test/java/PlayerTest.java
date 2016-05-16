@@ -10,6 +10,7 @@ public class PlayerTest {
     @Test
         public void getAgeTest(){
         Player player = new Player();
+        player.setAge(10);
         int expectedAge =10;
         int actualAge = player.getAge();
         assertEquals("The expected value should be 10",expectedAge,actualAge);
@@ -19,13 +20,14 @@ public class PlayerTest {
         public void setAgeTest(){
         Player player = new Player();
         int expectedSetAge =20;
-        player.setAge(25);
+        player.setAge(20);
         int actualSetAge = player.getAge();
         assertEquals("The expected value should be 20",expectedSetAge,actualSetAge);
     }
     @Test
         public void getNameTest(){
         Player player = new Player();
+        player.setName("Joy");
         String expectedName ="Joy";
         String actualName = player.getName();
         assertEquals("The expected value should be Joy",expectedName,actualName);
