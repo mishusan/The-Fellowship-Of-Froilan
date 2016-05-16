@@ -68,7 +68,6 @@ public class Slots extends Game {
 
         while (!stopPlayingSlots) {
             resetPotandWins();
-            Display.showMessage(player.getPurse());
             betPlaced = false;
             while (!betPlaced) {
                 double currentBet = Display.getDoublePrompt("How much are you betting?: ");
